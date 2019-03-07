@@ -5,7 +5,7 @@
     <link>http://blog.zhaoziwen.com.cn/</link>
     <description>Recent content on z2w_mose</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
     
@@ -31,9 +31,9 @@ It makes use of a variety of open source projects including:
       <guid>http://blog.zhaoziwen.com.cn/post/new_hugo_blog/</guid>
       <description>在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
 本地开发环境 下面将以macOS为例.
-本地安装hugo // Initialize video.js player if (document.getElementById(&#39;my-player&#39;) !== null) { /* eslint-disable no-undef */ videojs(&#39;#my-player&#39;, { aspectRatio: &#39;16:9&#39;, fluid: true, }); }  $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog  安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo  根据需要替换主题目录下static/img里面的图片
+本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog 安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo 根据需要替换主题目录下static/img里面的图片
 配置 参考exampleSite里面的config.toml修改配置文件
-baseURL = &amp;quot;http://blog.zhaoziwen.com.cn&amp;quot; languageCode = &amp;quot;en-us&amp;quot; title = &amp;quot;z2w_mose&amp;quot; theme = &amp;quot;hugo-nuo&amp;quot; copyright = &amp;quot;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.</description>
+baseURL = &amp;#34;http://blog.zhaoziwen.com.cn&amp;#34; languageCode = &amp;#34;en-us&amp;#34; title = &amp;#34;z2w_mose&amp;#34; theme = &amp;#34;hugo-nuo&amp;#34; copyright = &amp;#34;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</description>
     </item>
     
     <item>
