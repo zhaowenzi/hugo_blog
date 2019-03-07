@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on z2w_mose</title>
-    <link>http://blog.zhaoziwen.com.cn/tags/hugo/</link>
-    <description>Recent content in Hugo on z2w_mose</description>
+    <title>Blog on z2w_mose</title>
+    <link>http://blog.zhaoziwen.com.cn/tags/blog/</link>
+    <description>Recent content in Blog on z2w_mose</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Thu, 07 Mar 2019 18:58:07 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhaoziwen.com.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.zhaoziwen.com.cn/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Welcome</title>
+  <title>搭建hugo博客</title>
 
   
   
@@ -23,24 +23,36 @@
   
 
   
-  
-  <meta name="description" content="Welcome!">
+  <meta name="author" content="z2w">
+  <meta name="description" content="在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
+本地开发环境 下面将以macOS为例.
+本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog  安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo  根据需要替换主题目录下static/img里面的图片
+配置 参考exampleSite里面的config.toml修改配置文件
+baseURL = &amp;quot;http://blog.zhaoziwen.com.cn&amp;quot; languageCode = &amp;quot;en-us&amp;quot; title = &amp;quot;z2w_mose&amp;quot; theme = &amp;quot;hugo-nuo&amp;quot; copyright = &amp;quot;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.">
 
   
   
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@gohugoio">
-    <meta name="twitter:title" content="Welcome">
-    <meta name="twitter:description" content="Welcome!">
-    <meta name="twitter:image" content="/images/avatar.png">
+    <meta name="twitter:title" content="搭建hugo博客">
+    <meta name="twitter:description" content="在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
+本地开发环境 下面将以macOS为例.
+本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog  安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo  根据需要替换主题目录下static/img里面的图片
+配置 参考exampleSite里面的config.toml修改配置文件
+baseURL = &amp;quot;http://blog.zhaoziwen.com.cn&amp;quot; languageCode = &amp;quot;en-us&amp;quot; title = &amp;quot;z2w_mose&amp;quot; theme = &amp;quot;hugo-nuo&amp;quot; copyright = &amp;quot;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.">
+    <meta name="twitter:image" content="http://blog.zhaoziwen.com.cn/images/cover.jpg">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Welcome">
-  <meta property="og:description" content="Welcome!">
-  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/welcome/">
-  <meta property="og:image" content="/images/avatar.png">
+  <meta property="og:title" content="搭建hugo博客">
+  <meta property="og:description" content="在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
+本地开发环境 下面将以macOS为例.
+本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog  安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo  根据需要替换主题目录下static/img里面的图片
+配置 参考exampleSite里面的config.toml修改配置文件
+baseURL = &amp;quot;http://blog.zhaoziwen.com.cn&amp;quot; languageCode = &amp;quot;en-us&amp;quot; title = &amp;quot;z2w_mose&amp;quot; theme = &amp;quot;hugo-nuo&amp;quot; copyright = &amp;quot;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/new_hugo_blog/">
+  <meta property="og:image" content="http://blog.zhaoziwen.com.cn/images/cover.jpg">
 
 
 
@@ -48,7 +60,7 @@
 <meta name="generator" content="Hugo 0.52">
 
 
-<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/welcome/">
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/new_hugo_blog/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -190,12 +202,119 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">Welcome</h1>
-      <p class="post-meta">@zzw · Mar 6, 2019 · 1 min read</p>
+      <h1 class="post-title">搭建hugo博客</h1>
+      <p class="post-meta">@z2w · Mar 7, 2019 · 1 min read</p>
     </header>
-    <article class="post-content"><p>Welcome!</p>
+    <article class="post-content">
+
+<p>在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。</p>
+
+<h2 id="本地开发环境">本地开发环境</h2>
+
+<p>下面将以macOS为例.</p>
+
+<h3 id="本地安装hugo">本地安装hugo</h3>
+
+<pre><code class="language-shell">$ brew install hugo
+$ hugo version # 检查是否安装成功
+$ cd ~/Sites
+$ hugo new site my-blog
+$ cd my-blog
+</code></pre>
+
+<h3 id="安装主题">安装主题</h3>
+
+<pre><code class="language-shell">$ cd themes
+$ git clone https://github.com/laozhu/hugo-nuo
+</code></pre>
+
+<p>根据需要替换主题目录下<code>static/img</code>里面的图片</p>
+
+<h3 id="配置">配置</h3>
+
+<p>参考<code>exampleSite</code>里面的<code>config.toml</code>修改配置文件</p>
+
+<pre><code class="language-toml">baseURL = &quot;http://blog.zhaoziwen.com.cn&quot;
+languageCode = &quot;en-us&quot;
+title = &quot;z2w_mose&quot;
+theme = &quot;hugo-nuo&quot;
+
+copyright = &quot;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.&quot;
+
+[[menu.main]]
+  name = &quot;Home&quot;
+  weight = 10
+  identifier = &quot;home&quot;
+  url = &quot;/&quot;
+
+[[menu.main]]
+  name = &quot;Tags&quot;
+  weight = 30
+  identifier = &quot;tags&quot;
+  url = &quot;/tags/&quot;
+
+[params]
+  author = &quot;zzw&quot;
+  bg = &quot;images/grey-prism.svg&quot;
+  avatar = &quot;images/avatar.png&quot;
+  seotitle = &quot;zzw blog&quot;
+  subtitle = &quot;Work Harder&quot;
+  description = &quot;This is zzw's personal blog.&quot;
+  paginate = 10
+
+  email = &quot;me@zhaoziwen.com.cn&quot;
+  github = &quot;zhaowenzi&quot;
+
+  changyan = true
+  changyanId = &quot;###&quot;
+  changyanConf = &quot;###&quot;
+
+  ICP = &quot;粤ICP备16110253号&quot;
+</code></pre>
+
+<h3 id="添加页面">添加页面</h3>
+
+<pre><code class="language-shell">$ hugo new links.md
+$ hugo new about.md
+$ hugo new post/my-first-blog.md
+</code></pre>
+
+<h3 id="本地浏览">本地浏览</h3>
+
+<p>通过本地浏览器打开<code>localhost:1313</code></p>
+
+<pre><code class="language-shell">$ hugo server
+</code></pre>
+
+<h3 id="生成静态页面">生成静态页面</h3>
+
+<p>生成的页面在public文件夹下</p>
+
+<pre><code class="language-shell">$ hugo
+</code></pre>
+
+<h2 id="服务器端部署">服务器端部署</h2>
+
+<h3 id="安装apache2">安装apache2</h3>
+
+<pre><code class="language-shell">sudo apt-get install apache2
+</code></pre>
+
+<p>接下来把本地生成的public文件夹整个上传到/var/www/html文件夹下即可</p>
+
+<h2 id="自动化">自动化</h2>
+
+<p>为了避免每次都需要登陆服务器并上传public文件夹，所以这里把文件夹托管到github，并通过github的webhook让服务器自动pull仓库里面的代码</p>
 </article>
     <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/hugo"><span class="tag">Hugo</span></a></li>
+        
+          <li><a href="/tags/blog"><span class="tag">Blog</span></a></li>
+        
+      </ul>
       
       <p class="post-copyright">
         © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
@@ -206,7 +325,7 @@
       <div id="cyReward" role="cylabs" data-use="reward"></div>
       <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
       <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
-      <div id="SOHUCS" sid="/post/welcome/" ></div>
+      <div id="SOHUCS" sid="/post/new_hugo_blog/" ></div>
       <script>
       (function(){
       var appid = 'cyu7pyzqM';
