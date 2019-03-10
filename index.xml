@@ -24,6 +24,26 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>String_rotate</title>
+      <link>http://blog.zhaoziwen.com.cn/post/string_rotate/</link>
+      <pubDate>Sun, 10 Mar 2019 15:39:15 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/string_rotate/</guid>
+      <description>字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
+利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
+abcdefgh -&amp;gt; efghabcd -&amp;gt; ghefcdab -&amp;gt; hgfedcba
+例如：
+ [LeetCode] 190. Reverse Bits
+Reverse bits of a given 32 bits unsigned integer.
+Example :
+Input: 00000010100101000001111010011100
+Output: 00111001011110000010100101000000
+ 常规思路：
+classSolution { public: uint32_t res = 0; for (int i = 0; i &amp;lt; 32; i++) { res |= (((n &amp;gt;&amp;gt; i) &amp;amp; 1) &amp;lt;&amp;lt; (32 - i)); } return res; }  本文思路：
+classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &amp;gt;&amp;gt; 16) | (n &amp;lt;&amp;lt; 16); n = ((n &amp;amp; 0xff00ff00) &amp;gt;&amp;gt; 8) | ((n &amp;amp; 0x00ff00ff) &amp;lt;&amp;lt; 8); n = ((n &amp;amp; 0xf0f0f0f0) &amp;gt;&amp;gt; 4) | ((n &amp;amp; 0x0f0f0f0f) &amp;lt;&amp;lt; 4); n = ((n &amp;amp; 0xcccccccc) &amp;gt;&amp;gt; 2) | ((n &amp;amp; 0x33333333) &amp;lt;&amp;lt; 2); n = ((n &amp;amp; 0xaaaaaaaa) &amp;gt;&amp;gt; 1) | ((n &amp;amp; 0x55555555) &amp;lt;&amp;lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</description>
+    </item>
+    
+    <item>
       <title>搭建hugo博客</title>
       <link>http://blog.zhaoziwen.com.cn/post/new_hugo_blog/</link>
       <pubDate>Thu, 07 Mar 2019 18:58:07 +0800</pubDate>

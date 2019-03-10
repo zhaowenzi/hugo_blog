@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on z2w_mose</title>
-    <link>http://blog.zhaoziwen.com.cn/post/</link>
-    <description>Recent content in Posts on z2w_mose</description>
+    <title>Leetcode on z2w_mose</title>
+    <link>http://blog.zhaoziwen.com.cn/tags/leetcode/</link>
+    <description>Recent content in Leetcode on z2w_mose</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 10 Mar 2019 15:39:15 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.zhaoziwen.com.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -30,28 +30,6 @@ Output: 00111001011110000010100101000000
  常规思路：
 classSolution { public: uint32_t res = 0; for (int i = 0; i &amp;lt; 32; i++) { res |= (((n &amp;gt;&amp;gt; i) &amp;amp; 1) &amp;lt;&amp;lt; (32 - i)); } return res; }  本文思路：
 classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &amp;gt;&amp;gt; 16) | (n &amp;lt;&amp;lt; 16); n = ((n &amp;amp; 0xff00ff00) &amp;gt;&amp;gt; 8) | ((n &amp;amp; 0x00ff00ff) &amp;lt;&amp;lt; 8); n = ((n &amp;amp; 0xf0f0f0f0) &amp;gt;&amp;gt; 4) | ((n &amp;amp; 0x0f0f0f0f) &amp;lt;&amp;lt; 4); n = ((n &amp;amp; 0xcccccccc) &amp;gt;&amp;gt; 2) | ((n &amp;amp; 0x33333333) &amp;lt;&amp;lt; 2); n = ((n &amp;amp; 0xaaaaaaaa) &amp;gt;&amp;gt; 1) | ((n &amp;amp; 0x55555555) &amp;lt;&amp;lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</description>
-    </item>
-    
-    <item>
-      <title>搭建hugo博客</title>
-      <link>http://blog.zhaoziwen.com.cn/post/new_hugo_blog/</link>
-      <pubDate>Thu, 07 Mar 2019 18:58:07 +0800</pubDate>
-      
-      <guid>http://blog.zhaoziwen.com.cn/post/new_hugo_blog/</guid>
-      <description>在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
-本地开发环境 下面将以macOS为例.
-本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog 安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo 根据需要替换主题目录下static/img里面的图片
-配置 参考exampleSite里面的config.toml修改配置文件
-baseURL = &amp;#34;http://blog.zhaoziwen.com.cn&amp;#34; languageCode = &amp;#34;en-us&amp;#34; title = &amp;#34;z2w_mose&amp;#34; theme = &amp;#34;hugo-nuo&amp;#34; copyright = &amp;#34;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</description>
-    </item>
-    
-    <item>
-      <title>Welcome</title>
-      <link>http://blog.zhaoziwen.com.cn/post/welcome/</link>
-      <pubDate>Wed, 06 Mar 2019 12:36:04 +0800</pubDate>
-      
-      <guid>http://blog.zhaoziwen.com.cn/post/welcome/</guid>
-      <description>Welcome!</description>
     </item>
     
   </channel>

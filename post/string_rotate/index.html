@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>String_rotate</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
+利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
+abcdefgh -&amp;gt; efghabcd -&amp;gt; ghefcdab -&amp;gt; hgfedcba
+例如：
+ [LeetCode] 190. Reverse Bits
+Reverse bits of a given 32 bits unsigned integer.
+Example :
+Input: 00000010100101000001111010011100
+Output: 00111001011110000010100101000000
+ 常规思路：
+classSolution { public: uint32_t res = 0; for (int i = 0; i &amp;lt; 32; i&#43;&#43;) { res |= (((n &amp;gt;&amp;gt; i) &amp;amp; 1) &amp;lt;&amp;lt; (32 - i)); } return res; }  本文思路：
+classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &amp;gt;&amp;gt; 16) | (n &amp;lt;&amp;lt; 16); n = ((n &amp;amp; 0xff00ff00) &amp;gt;&amp;gt; 8) | ((n &amp;amp; 0x00ff00ff) &amp;lt;&amp;lt; 8); n = ((n &amp;amp; 0xf0f0f0f0) &amp;gt;&amp;gt; 4) | ((n &amp;amp; 0x0f0f0f0f) &amp;lt;&amp;lt; 4); n = ((n &amp;amp; 0xcccccccc) &amp;gt;&amp;gt; 2) | ((n &amp;amp; 0x33333333) &amp;lt;&amp;lt; 2); n = ((n &amp;amp; 0xaaaaaaaa) &amp;gt;&amp;gt; 1) | ((n &amp;amp; 0x55555555) &amp;lt;&amp;lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="String_rotate">
+    <meta name="twitter:description" content="字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
+利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
+abcdefgh -&amp;gt; efghabcd -&amp;gt; ghefcdab -&amp;gt; hgfedcba
+例如：
+ [LeetCode] 190. Reverse Bits
+Reverse bits of a given 32 bits unsigned integer.
+Example :
+Input: 00000010100101000001111010011100
+Output: 00111001011110000010100101000000
+ 常规思路：
+classSolution { public: uint32_t res = 0; for (int i = 0; i &amp;lt; 32; i&#43;&#43;) { res |= (((n &amp;gt;&amp;gt; i) &amp;amp; 1) &amp;lt;&amp;lt; (32 - i)); } return res; }  本文思路：
+classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &amp;gt;&amp;gt; 16) | (n &amp;lt;&amp;lt; 16); n = ((n &amp;amp; 0xff00ff00) &amp;gt;&amp;gt; 8) | ((n &amp;amp; 0x00ff00ff) &amp;lt;&amp;lt; 8); n = ((n &amp;amp; 0xf0f0f0f0) &amp;gt;&amp;gt; 4) | ((n &amp;amp; 0x0f0f0f0f) &amp;lt;&amp;lt; 4); n = ((n &amp;amp; 0xcccccccc) &amp;gt;&amp;gt; 2) | ((n &amp;amp; 0x33333333) &amp;lt;&amp;lt; 2); n = ((n &amp;amp; 0xaaaaaaaa) &amp;gt;&amp;gt; 1) | ((n &amp;amp; 0x55555555) &amp;lt;&amp;lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="String_rotate">
+  <meta property="og:description" content="字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
+利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
+abcdefgh -&amp;gt; efghabcd -&amp;gt; ghefcdab -&amp;gt; hgfedcba
+例如：
+ [LeetCode] 190. Reverse Bits
+Reverse bits of a given 32 bits unsigned integer.
+Example :
+Input: 00000010100101000001111010011100
+Output: 00111001011110000010100101000000
+ 常规思路：
+classSolution { public: uint32_t res = 0; for (int i = 0; i &amp;lt; 32; i&#43;&#43;) { res |= (((n &amp;gt;&amp;gt; i) &amp;amp; 1) &amp;lt;&amp;lt; (32 - i)); } return res; }  本文思路：
+classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &amp;gt;&amp;gt; 16) | (n &amp;lt;&amp;lt; 16); n = ((n &amp;amp; 0xff00ff00) &amp;gt;&amp;gt; 8) | ((n &amp;amp; 0x00ff00ff) &amp;lt;&amp;lt; 8); n = ((n &amp;amp; 0xf0f0f0f0) &amp;gt;&amp;gt; 4) | ((n &amp;amp; 0x0f0f0f0f) &amp;lt;&amp;lt; 4); n = ((n &amp;amp; 0xcccccccc) &amp;gt;&amp;gt; 2) | ((n &amp;amp; 0x33333333) &amp;lt;&amp;lt; 2); n = ((n &amp;amp; 0xaaaaaaaa) &amp;gt;&amp;gt; 1) | ((n &amp;amp; 0x55555555) &amp;lt;&amp;lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/string_rotate/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/string_rotate/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">String_rotate</h1>
+      <p class="post-meta">@zzw · Mar 10, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<h3 id="字符串翻转与旋转">字符串翻转与旋转</h3>
+
+<h4 id="翻转">翻转</h4>
+
+<p>除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。</p>
+
+<p>利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：</p>
+
+<p>abcdefgh -&gt; efghabcd -&gt; ghefcdab -&gt; hgfedcba</p>
+
+<p>例如：</p>
+
+<blockquote>
+<p>[LeetCode] 190. Reverse Bits</p>
+
+<p>Reverse bits of a given 32 bits unsigned integer.</p>
+
+<p>Example :</p>
+
+<p>Input: 00000010100101000001111010011100</p>
+
+<p>Output: 00111001011110000010100101000000</p>
+</blockquote>
+
+<p>常规思路：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    uint32_t res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>) {
+        res <span style="color:#f92672">|=</span> (((n <span style="color:#f92672">&gt;&gt;</span> i) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">32</span> <span style="color:#f92672">-</span> i));
+    }
+    <span style="color:#66d9ef">return</span> res;
+}
+</code></pre></div>
+<p>本文思路：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    uint32_t reverseBits(uint32_t n) {
+        n <span style="color:#f92672">=</span> (n <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">|</span> (n <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>);
+        n <span style="color:#f92672">=</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff00ff00</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">|</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x00ff00ff</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>);
+        n <span style="color:#f92672">=</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xf0f0f0f0</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">|</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0f0f0f0f</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>);
+        n <span style="color:#f92672">=</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xcccccccc</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">|</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x33333333</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>);
+        n <span style="color:#f92672">=</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xaaaaaaaa</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|</span> ((n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x55555555</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">return</span> n;
+    }
+};
+</code></pre></div>
+<h4 id="旋转">旋转</h4>
+
+<p>类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</p>
+
+<p>例如：</p>
+
+<blockquote>
+<p>[LeetCode] 189. Rotate Array</p>
+
+<p>Given an array, rotate the array to the right by k steps, where k is non-negative.</p>
+
+<p>Example:</p>
+
+<p>Input: [1,2,3,4,5,6,7] and k = 3</p>
+
+<p>Output: [5,6,7,1,2,3,4]</p>
+</blockquote>
+
+<p>常规思路：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">void</span> rotate(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums, <span style="color:#66d9ef">int</span> k) {
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> t <span style="color:#f92672">=</span> nums;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> nums.size(); i<span style="color:#f92672">++</span>) {
+            nums[(i <span style="color:#f92672">+</span> k) <span style="color:#f92672">%</span> nums.size()] <span style="color:#f92672">=</span> t[i];
+        }
+    }
+}
+</code></pre></div>
+<p>本文思路：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">void</span> rotate(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums, <span style="color:#66d9ef">int</span> k) {
+        k <span style="color:#f92672">%=</span> nums.size();
+        reverse(nums, <span style="color:#ae81ff">0</span>, nums.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        reverse(nums, <span style="color:#ae81ff">0</span>, k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        reverse(nums, k, nums.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    }
+    <span style="color:#66d9ef">void</span> reverse(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
+        <span style="color:#66d9ef">while</span>(left <span style="color:#f92672">&lt;</span> right) {
+            <span style="color:#66d9ef">int</span> temp <span style="color:#f92672">=</span> nums[left];
+            nums[left] <span style="color:#f92672">=</span> nums[right];
+            nums[right] <span style="color:#f92672">=</span> temp;
+            left<span style="color:#f92672">++</span>;
+            right<span style="color:#f92672">--</span>;
+        }
+    }
+}
+</code></pre></div></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/leetcode"><span class="tag">Leetcode</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/string_rotate/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
