@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Median_of_two_sorted_arrays</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="Median of two sorted arrays 核心是将原问题转变成寻找第k小数的问题（假设两个原序列升序排列）
+首先假设数组A和B的元素个数都大于k/2，比较A[k/2-1]和B[k/2-1]两个元素，这两个元素分别表示A的第k/2小的元素和B的第k/2小的元素。
+1、A[k/2-1]&amp;lt;B[k/2-1]，表示A[0]到A[k/2-1]的元素都在A和B合并之后的前k小的元素中，所以我们抛弃它。
+2、A[k/2-1]&amp;gt;B[k/2-1]，同上
+3、A[k/2-1]=B[k/2-1]，这个数即第K小的数
+ [LeetCode] 4. Median of Two Sorted Arrays
+There are two sorted arrays nums1 and nums2 of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log(m&#43;n)).
+Example:
+nums1 = [1, 3]
+nums2 = [2]
+The midian is 2.0
+ classSolution { public: double findMedianSortedArrays(vector&amp;lt;int&amp;gt;&amp;amp; nums1, vector&amp;lt;int&amp;gt;&amp;amp; nums2) { int m = nums1.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Median_of_two_sorted_arrays">
+    <meta name="twitter:description" content="Median of two sorted arrays 核心是将原问题转变成寻找第k小数的问题（假设两个原序列升序排列）
+首先假设数组A和B的元素个数都大于k/2，比较A[k/2-1]和B[k/2-1]两个元素，这两个元素分别表示A的第k/2小的元素和B的第k/2小的元素。
+1、A[k/2-1]&amp;lt;B[k/2-1]，表示A[0]到A[k/2-1]的元素都在A和B合并之后的前k小的元素中，所以我们抛弃它。
+2、A[k/2-1]&amp;gt;B[k/2-1]，同上
+3、A[k/2-1]=B[k/2-1]，这个数即第K小的数
+ [LeetCode] 4. Median of Two Sorted Arrays
+There are two sorted arrays nums1 and nums2 of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log(m&#43;n)).
+Example:
+nums1 = [1, 3]
+nums2 = [2]
+The midian is 2.0
+ classSolution { public: double findMedianSortedArrays(vector&amp;lt;int&amp;gt;&amp;amp; nums1, vector&amp;lt;int&amp;gt;&amp;amp; nums2) { int m = nums1.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Median_of_two_sorted_arrays">
+  <meta property="og:description" content="Median of two sorted arrays 核心是将原问题转变成寻找第k小数的问题（假设两个原序列升序排列）
+首先假设数组A和B的元素个数都大于k/2，比较A[k/2-1]和B[k/2-1]两个元素，这两个元素分别表示A的第k/2小的元素和B的第k/2小的元素。
+1、A[k/2-1]&amp;lt;B[k/2-1]，表示A[0]到A[k/2-1]的元素都在A和B合并之后的前k小的元素中，所以我们抛弃它。
+2、A[k/2-1]&amp;gt;B[k/2-1]，同上
+3、A[k/2-1]=B[k/2-1]，这个数即第K小的数
+ [LeetCode] 4. Median of Two Sorted Arrays
+There are two sorted arrays nums1 and nums2 of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log(m&#43;n)).
+Example:
+nums1 = [1, 3]
+nums2 = [2]
+The midian is 2.0
+ classSolution { public: double findMedianSortedArrays(vector&amp;lt;int&amp;gt;&amp;amp; nums1, vector&amp;lt;int&amp;gt;&amp;amp; nums2) { int m = nums1.">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Median_of_two_sorted_arrays</h1>
+      <p class="post-meta">@z2w · Mar 11, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<h3 id="median-of-two-sorted-arrays">Median of two sorted arrays</h3>
+
+<p>核心是将原问题转变成寻找第k小数的问题（假设两个原序列升序排列）</p>
+
+<p>首先假设数组A和B的元素个数都大于k/2，比较A[k/2-1]和B[k/2-1]两个元素，这两个元素分别表示A的第k/2小的元素和B的第k/2小的元素。</p>
+
+<p>1、A[k/2-1]&lt;B[k/2-1]，表示A[0]到A[k/2-1]的元素都在A和B合并之后的前k小的元素中，所以我们抛弃它。</p>
+
+<p>2、A[k/2-1]&gt;B[k/2-1]，同上</p>
+
+<p>3、A[k/2-1]=B[k/2-1]，这个数即第K小的数</p>
+
+<blockquote>
+<p>[LeetCode] 4. Median of Two Sorted Arrays</p>
+
+<p>There are two sorted arrays nums1 and nums2 of size m and n respectively.</p>
+
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).</p>
+
+<p>Example:</p>
+
+<p>nums1 = [1, 3]</p>
+
+<p>nums2 = [2]</p>
+
+<p>The midian is 2.0</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">double</span> findMedianSortedArrays(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums1, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums2) {
+        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> nums1.size();
+        <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> nums2.size();
+        <span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> m <span style="color:#f92672">+</span> n;
+		<span style="color:#66d9ef">if</span> (total <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x1</span>)
+			<span style="color:#66d9ef">return</span> findKth(nums1, m, nums2, n, total <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+		<span style="color:#66d9ef">else</span>{
+            <span style="color:#66d9ef">double</span> num1 <span style="color:#f92672">=</span> findKth(nums1, m, nums2, n, total <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">double</span> num2 <span style="color:#f92672">=</span> findKth(nums1, m, nums2, n, total <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+			<span style="color:#66d9ef">return</span> (num1 <span style="color:#f92672">+</span> num2) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+        }
+    }
+    <span style="color:#66d9ef">double</span> findKth(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a, <span style="color:#66d9ef">int</span> m, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> b, <span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">int</span> k) {
+        <span style="color:#66d9ef">if</span>(m <span style="color:#f92672">&gt;</span> n) {
+            <span style="color:#66d9ef">return</span> findKth(b, n, a, m, k);
+        }
+        <span style="color:#66d9ef">if</span>(m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span> b[k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        }
+        <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">return</span> min(a[<span style="color:#ae81ff">0</span>], b[<span style="color:#ae81ff">0</span>]);
+        }
+        
+        <span style="color:#66d9ef">int</span> pa <span style="color:#f92672">=</span> min(k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, m);
+        <span style="color:#66d9ef">int</span> pb <span style="color:#f92672">=</span> k <span style="color:#f92672">-</span> pa;
+        <span style="color:#66d9ef">if</span>(a[pa <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> b[pb <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) {
+            a.erase(a.begin(), a.begin() <span style="color:#f92672">+</span> pa);
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">findKth</span>(a, m<span style="color:#f92672">-</span>pa, b, n, k<span style="color:#f92672">-</span>pa);
+        }
+        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(a[pa<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> b[pb <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) {
+            b.erase(b.begin(), b.begin() <span style="color:#f92672">+</span> pb);
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">findKth</span>(a, m, b, n<span style="color:#f92672">-</span>pb, k<span style="color:#f92672">-</span>pb);
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> a[pa <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+        }
+    }
+    
+};
+</code></pre></div>
+<p>常规方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">double</span> findMedianSortedArrays(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums1, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums2) {
+        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> nums1.size();
+        <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> nums2.size();
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> array <span style="color:#f92672">=</span> merge(nums1, nums2);
+        <span style="color:#66d9ef">return</span> ((<span style="color:#66d9ef">double</span>)(array[(m<span style="color:#f92672">+</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">+</span>array[(m<span style="color:#f92672">+</span>n)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>]))<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+    }
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> merge(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> A, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> B)
+    {
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> ret;
+        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> A.size();
+        <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> B.size();
+        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> n)
+        {
+            <span style="color:#66d9ef">if</span>(A[i] <span style="color:#f92672">&lt;=</span> B[j])
+            {
+                ret.push_back(A[i]);
+                i <span style="color:#f92672">++</span>;
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                ret.push_back(B[j]);
+                j <span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">==</span> m)
+        {
+            <span style="color:#66d9ef">while</span>(j <span style="color:#f92672">&lt;</span> n)
+            {
+                ret.push_back(B[j]);
+                j <span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">if</span>(j <span style="color:#f92672">==</span> n)
+        {
+            <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> m)
+            {
+                ret.push_back(A[i]);
+                i <span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">return</span> ret;
+    }
+};
+</code></pre></div></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/leetcode"><span class="tag">Leetcode</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/median_of_two_sorted_arrays/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
