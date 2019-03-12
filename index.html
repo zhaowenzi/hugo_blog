@@ -186,6 +186,30 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/" class="post-link">递归之生成括号</a></h3>
+    <p class="post-meta">@z2w · Mar 12, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 22. Generate Parentheses
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+For example, given n = 3, a solution set is:
+[
+​ “((()))”
+​ “(()())”
+​ “()(())”
+​ “()()()”
+]
+ 和合法的情况下，任意时刻，左括号个数要大于等于右括号个数
+1、当left个数大于right个数，非常情况，返回即可
+2、left和right都等于0，临时变量中左右括号个数相等，所以将临时变量的值存入res中
+3、其余情况下，先放左括号，再放右括号，然后递归。
+classSolution { public: vector&lt;string&gt; generateParenthesis(int n) { vector&lt;string&gt; res; generateParenthesisDFS(n, n, &#34;&#34;, res); return res; } void generateParenthesisDFS(int left, int right, string out, vector&lt;string&gt; &amp;res) { if(left &gt; right) return; if(left == 0 &amp;&amp; right == 0) res.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/" class="post-link">Median_of_two_sorted_arrays</a></h3>
     <p class="post-meta">@z2w · Mar 11, 2019 · 2 min read</p>
   </header>

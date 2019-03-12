@@ -7,10 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 11 Mar 2019 21:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Mar 2019 23:48:48 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>递归之生成括号</title>
+      <link>http://blog.zhaoziwen.com.cn/post/generate_parentheses/</link>
+      <pubDate>Tue, 12 Mar 2019 23:48:48 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/generate_parentheses/</guid>
+      <description>[LeetCode] 22. Generate Parentheses
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+For example, given n = 3, a solution set is:
+[
+​ &amp;ldquo;((()))&amp;rdquo;
+​ &amp;ldquo;(()())&amp;rdquo;
+​ &amp;ldquo;()(())&amp;rdquo;
+​ &amp;ldquo;()()()&amp;rdquo;
+]
+ 和合法的情况下，任意时刻，左括号个数要大于等于右括号个数
+1、当left个数大于right个数，非常情况，返回即可
+2、left和right都等于0，临时变量中左右括号个数相等，所以将临时变量的值存入res中
+3、其余情况下，先放左括号，再放右括号，然后递归。
+classSolution { public: vector&amp;lt;string&amp;gt; generateParenthesis(int n) { vector&amp;lt;string&amp;gt; res; generateParenthesisDFS(n, n, &amp;#34;&amp;#34;, res); return res; } void generateParenthesisDFS(int left, int right, string out, vector&amp;lt;string&amp;gt; &amp;amp;res) { if(left &amp;gt; right) return; if(left == 0 &amp;amp;&amp;amp; right == 0) res.</description>
+    </item>
     
     <item>
       <title>Median_of_two_sorted_arrays</title>
