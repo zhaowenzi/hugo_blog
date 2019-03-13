@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 12 Mar 2019 23:48:48 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 23:58:12 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Longest_valid_parentheses</title>
+      <link>http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/</link>
+      <pubDate>Wed, 13 Mar 2019 23:58:12 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/</guid>
+      <description>[LeetCode] 32. Longest Valid Parentheses
+Given a string containing just the characters &amp;lsquo;(&amp;rsquo; and &amp;lsquo;)&amp;rsquo;, find the length of the longest valid parentheses substring.
+Example:
+Input: &amp;ldquo;)()()&amp;rdquo;
+Output: 4
+ 思路一：动态规划
+dp[i]表示以当前位置为终点的最长长度，则只能在“)”处更新：
+如果s[i-1-dp[i-1]]==&amp;lsquo;(&amp;lsquo;，则说明当前位置可以和i-1-dp[i-1]位置匹配，dp[i] = dp[i-1]+2；
+然后还要加上匹配位置之前的最长长度dp[i]+=dp[i-dp[i]]；
+classSolution { public: int longestValidParentheses(string s) { int result = 0; s = &amp;#39;)&amp;#39; + s; vector&amp;lt;int&amp;gt; dp(s.length(),0); for(int i = 1; i &amp;lt; s.length(); i++) { if(s[i] == &amp;#39;)&amp;#39;) { if(s[i - 1 - dp[i - 1]] == &amp;#39;(&amp;#39;) dp[i] = dp[i-1] + 2; dp[i] += dp[i-dp[i]]; } result = max(result,dp[i]); } return result; } };  思路二：栈</description>
+    </item>
     
     <item>
       <title>递归之生成括号</title>
