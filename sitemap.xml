@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/edit_distance/</loc>
+    <lastmod>2019-03-19T01:01:23+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/</loc>
     <lastmod>2019-03-13T23:58:12+08:00</lastmod>
   </url>
@@ -56,13 +61,13 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/leetcode/</loc>
-    <lastmod>2019-03-13T23:58:12+08:00</lastmod>
+    <lastmod>2019-03-19T01:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-13T23:58:12+08:00</lastmod>
+    <lastmod>2019-03-19T01:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
