@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用户数据报协议UDP详解</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content=" 概述 UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点
+ 无连接。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。 尽最大努力交付，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。 面向报文。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。 没有拥塞控制。意味着网络出现的拥塞不会使主机发送频率降低。 UDP支持一对一、一对多、多对一和多对多的交互通信。 UPD首部开销小。只有8个字节，TCP首部20字节。  UDP的首部格式 UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：
+ 源端口。在需要对方回信时使用。不需要可用全0。 目的端口。在终点交付报文是必须使用。 长度。UDP用户数据报的长度，最小值为8（首部）。 检验和。检测UDP用户数据报在传输中是否有错。有错即丢弃。  当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。
+UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）
+计算检验和步骤：
+ 把伪首部添加到UDP上； 计算初始是需要将检验和字段添零； 把所有位划分为16位（2字节）的字 把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上 将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和  ">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用户数据报协议UDP详解">
+    <meta name="twitter:description" content=" 概述 UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点
+ 无连接。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。 尽最大努力交付，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。 面向报文。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。 没有拥塞控制。意味着网络出现的拥塞不会使主机发送频率降低。 UDP支持一对一、一对多、多对一和多对多的交互通信。 UPD首部开销小。只有8个字节，TCP首部20字节。  UDP的首部格式 UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：
+ 源端口。在需要对方回信时使用。不需要可用全0。 目的端口。在终点交付报文是必须使用。 长度。UDP用户数据报的长度，最小值为8（首部）。 检验和。检测UDP用户数据报在传输中是否有错。有错即丢弃。  当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。
+UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）
+计算检验和步骤：
+ 把伪首部添加到UDP上； 计算初始是需要将检验和字段添零； 把所有位划分为16位（2字节）的字 把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上 将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和  ">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用户数据报协议UDP详解">
+  <meta property="og:description" content=" 概述 UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点
+ 无连接。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。 尽最大努力交付，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。 面向报文。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。 没有拥塞控制。意味着网络出现的拥塞不会使主机发送频率降低。 UDP支持一对一、一对多、多对一和多对多的交互通信。 UPD首部开销小。只有8个字节，TCP首部20字节。  UDP的首部格式 UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：
+ 源端口。在需要对方回信时使用。不需要可用全0。 目的端口。在终点交付报文是必须使用。 长度。UDP用户数据报的长度，最小值为8（首部）。 检验和。检测UDP用户数据报在传输中是否有错。有错即丢弃。  当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。
+UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）
+计算检验和步骤：
+ 把伪首部添加到UDP上； 计算初始是需要将检验和字段添零； 把所有位划分为16位（2字节）的字 把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上 将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和  ">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/udp/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/udp/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用户数据报协议UDP详解</h1>
+      <p class="post-meta">@z2w · Mar 20, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content">
+
+<h4 id="概述">概述</h4>
+
+<p>UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点</p>
+
+<ol>
+<li><strong>无连接</strong>。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。</li>
+<li><strong>尽最大努力交付</strong>，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。</li>
+<li><strong>面向报文</strong>。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。</li>
+<li><strong>没有拥塞控制</strong>。意味着网络出现的拥塞不会使主机发送频率降低。</li>
+<li><strong>UDP支持一对一、一对多、多对一和多对多的交互通信</strong>。</li>
+<li><strong>UPD首部开销小</strong>。只有8个字节，TCP首部20字节。</li>
+</ol>
+
+<h4 id="udp的首部格式">UDP的首部格式</h4>
+
+<p>UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：</p>
+
+<ol>
+<li><strong>源端口</strong>。在需要对方回信时使用。不需要可用全0。</li>
+<li><strong>目的端口</strong>。在终点交付报文是必须使用。</li>
+<li><strong>长度</strong>。UDP用户数据报的长度，最小值为8（首部）。</li>
+<li><strong>检验和</strong>。检测UDP用户数据报在传输中是否有错。有错即丢弃。</li>
+</ol>
+
+<p>当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/u=925851693,2714828517&amp;fm=26&amp;gp=0.png" alt="img" /></p>
+
+<p>UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）</p>
+
+<p>计算检验和步骤：</p>
+
+<ol>
+<li>把伪首部添加到UDP上；</li>
+<li>计算初始是需要将检验和字段添零；</li>
+<li>把所有位划分为16位（2字节）的字</li>
+<li>把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上</li>
+<li>将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和</li>
+</ol>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/udp"><span class="tag">Udp</span></a></li>
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="tag">计算机网络</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/udp/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

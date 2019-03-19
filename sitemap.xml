@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/udp/</loc>
+    <lastmod>2019-03-20T01:38:21+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/</loc>
     <lastmod>2019-03-20T00:54:11+08:00</lastmod>
   </url>
@@ -77,7 +82,7 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-20T00:54:11+08:00</lastmod>
+    <lastmod>2019-03-20T01:38:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -88,8 +93,20 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/tags/udp/</loc>
+    <lastmod>2019-03-20T01:38:21+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2019-03-20T01:38:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
