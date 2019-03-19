@@ -24,6 +24,34 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Unique Binary Search Trees</title>
+      <link>http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/</link>
+      <pubDate>Wed, 20 Mar 2019 00:54:11 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/</guid>
+      <description>[LeetCode] 96. Given n, how many structurally unique BST&amp;rsquo;s that store values 1 &amp;hellip; n ?
+Example:
+&amp;gt; Input: 3 &amp;gt; Output: 5 &amp;gt; Explanation: &amp;gt; Given n = 3, there are a total of 5 unique BST&#39;s: &amp;gt; &amp;gt; 1 3 3 2 1 &amp;gt; \ / / / \ \ &amp;gt; 3 2 1 1 3 2 &amp;gt; / / \ \ &amp;gt; 2 1 2 3 &amp;gt; ``` 思路一递归： 空树和只有根结点时，也为BST。对于一点i，当其为根结点时，左子树的节点的个数为i-1（1, .</description>
+    </item>
+    
+    <item>
+      <title>Word Search 之 DFS</title>
+      <link>http://blog.zhaoziwen.com.cn/post/word_search/</link>
+      <pubDate>Wed, 20 Mar 2019 00:36:42 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/word_search/</guid>
+      <description>[LeetCode] 79. Word Search
+Given a 2D board and a word, find if the word exists in the grid.
+The word can be constructed from letters of sequentially adjacent cell, where &amp;ldquo;adjacent&amp;rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+Example:
+board =
+[
+​ [&amp;lsquo;A&amp;rsquo;, &amp;lsquo;B&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]
+​ [&amp;rsquo;S&amp;rsquo;, &amp;lsquo;F&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;rsquo;S&amp;rsquo;]
+​ [&amp;lsquo;A&amp;rsquo;, &amp;rsquo;D&amp;rsquo;, &amp;lsquo;E&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]</description>
+    </item>
+    
+    <item>
       <title>Edit Distance 编辑距离</title>
       <link>http://blog.zhaoziwen.com.cn/post/edit_distance/</link>
       <pubDate>Tue, 19 Mar 2019 01:01:23 +0800</pubDate>
