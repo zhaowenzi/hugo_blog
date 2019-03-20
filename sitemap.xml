@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/lrih_and_mr/</loc>
+    <lastmod>2019-03-21T01:08:23+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/udp/</loc>
     <lastmod>2019-03-20T01:38:21+08:00</lastmod>
   </url>
@@ -76,13 +81,13 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/leetcode/</loc>
-    <lastmod>2019-03-20T00:54:11+08:00</lastmod>
+    <lastmod>2019-03-21T01:08:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-20T01:38:21+08:00</lastmod>
+    <lastmod>2019-03-21T01:08:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   

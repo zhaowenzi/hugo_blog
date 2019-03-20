@@ -24,6 +24,20 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Largest Rectangle in Histogram &amp; Maximal Rectangle</title>
+      <link>http://blog.zhaoziwen.com.cn/post/lrih_and_mr/</link>
+      <pubDate>Thu, 21 Mar 2019 01:08:23 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/lrih_and_mr/</guid>
+      <description>这两题在LeetCode上位置临近，它们之间存在一定的关联
+ [LeetCode] 84. Largest Rectangle in Histogram
+Given n non-negaive integers representing the histogram&amp;rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+Above is a histogram where width of each bar is 1, given height = [2, 1, 5, 6, 2, 3].
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+Example:</description>
+    </item>
+    
+    <item>
       <title>用户数据报协议UDP详解</title>
       <link>http://blog.zhaoziwen.com.cn/post/udp/</link>
       <pubDate>Wed, 20 Mar 2019 01:38:21 +0800</pubDate>

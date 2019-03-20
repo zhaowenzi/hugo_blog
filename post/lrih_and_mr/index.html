@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Largest Rectangle in Histogram &amp; Maximal Rectangle</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="这两题在LeetCode上位置临近，它们之间存在一定的关联
+ [LeetCode] 84. Largest Rectangle in Histogram
+Given n non-negaive integers representing the histogram&amp;rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+Above is a histogram where width of each bar is 1, given height = [2, 1, 5, 6, 2, 3].
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+Example:">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Largest Rectangle in Histogram &amp; Maximal Rectangle">
+    <meta name="twitter:description" content="这两题在LeetCode上位置临近，它们之间存在一定的关联
+ [LeetCode] 84. Largest Rectangle in Histogram
+Given n non-negaive integers representing the histogram&amp;rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+Above is a histogram where width of each bar is 1, given height = [2, 1, 5, 6, 2, 3].
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+Example:">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Largest Rectangle in Histogram &amp; Maximal Rectangle">
+  <meta property="og:description" content="这两题在LeetCode上位置临近，它们之间存在一定的关联
+ [LeetCode] 84. Largest Rectangle in Histogram
+Given n non-negaive integers representing the histogram&amp;rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+Above is a histogram where width of each bar is 1, given height = [2, 1, 5, 6, 2, 3].
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+Example:">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/lrih_and_mr/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/lrih_and_mr/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Largest Rectangle in Histogram &amp; Maximal Rectangle</h1>
+      <p class="post-meta">@z2w · Mar 21, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content"><p>这两题在LeetCode上位置临近，它们之间存在一定的关联</p>
+
+<blockquote>
+<p>[LeetCode] 84. Largest Rectangle in Histogram</p>
+
+<p>Given n non-negaive integers representing the histogram&rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/histogram.png" alt="img" /></p>
+
+<p>Above is a histogram where width of each bar is 1, given height = [2, 1, 5, 6, 2, 3].</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/histogram_area.png" alt="img" /></p>
+
+<p>The largest rectangle is shown in the shaded area, which has area = 10 unit.</p>
+
+<p>Example:</p>
+
+<p>Input: [2, 1, 5, 6, 2, 3]</p>
+
+<p>Output: 10</p>
+</blockquote>
+
+<p>最初的想法是用DP，但是一直没能找出状态转移公式。所以这题的方法是遍历数组，每找到一个局部峰值(只要当前值大于紧随其后的值，就可以视为局部峰值)，就向前遍历所有的值，算出共同的矩形面积，每次对比保留最大值。至于为什么是局部峰值，可以这样来证明：如果不是局部峰值，意味着紧随其后的值大于等于当前值，那如果最大面积包括当前值，那毫无疑问也包括随后的值。所以目标区域一定结束在局部峰值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Pruning optimize
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> largestRectangleArea(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>height) {
+        <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> height.size(); <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> height.size() <span style="color:#f92672">&amp;&amp;</span> height[i] <span style="color:#f92672">&lt;=</span> height[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+                <span style="color:#66d9ef">continue</span>;
+            }
+            <span style="color:#66d9ef">int</span> minH <span style="color:#f92672">=</span> height[i];
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i; j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>j) {
+                minH <span style="color:#f92672">=</span> min(minH, height[j]);
+                <span style="color:#66d9ef">int</span> area <span style="color:#f92672">=</span> minH <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+                res <span style="color:#f92672">=</span> max(res, area);
+            }
+        }
+        <span style="color:#66d9ef">return</span> res;
+    }
+};
+</code></pre></div>
+<blockquote>
+<p>[LeetCode] 85. Maximal Rectangle</p>
+
+<p>Given a 2D binary matrix filled with 0&rsquo;s and 1&rsquo;s, find the largest rectangle containing only 1&rsquo;s and return its area.</p>
+
+<p>Example:</p>
+
+<p>Input:</p>
+
+<p>[</p>
+
+<p>​ [&ldquo;1&rdquo;,&ldquo;0&rdquo;,&ldquo;1&rdquo;,&ldquo;0&rdquo;,&ldquo;0&rdquo;],</p>
+
+<p>​ [&ldquo;1&rdquo;,&ldquo;0&rdquo;,&ldquo;1&rdquo;,&ldquo;1&rdquo;,&ldquo;1&rdquo;],</p>
+
+<p>​ [&ldquo;1&rdquo;,&ldquo;1&rdquo;,&ldquo;1&rdquo;,&ldquo;1&rdquo;,&ldquo;1&rdquo;],</p>
+
+<p>​ [&ldquo;1&rdquo;,&ldquo;0&rdquo;,&ldquo;0&rdquo;,&ldquo;1&rdquo;,&ldquo;0&rdquo;]</p>
+
+<p>]</p>
+
+<p>Output: 6</p>
+</blockquote>
+
+<p>这题确实对目前的我来讲过于复杂，一开始没有任何头绪，尝试往DP方向上靠，但是感觉转移方程过于复杂。后来找到了一种较为简单的方法。</p>
+
+<p>对目标2D数组每一行进行切分，每一层向上都可以看做一个直方图，输入矩阵有多少行，就可以形成多少个直方图，每个直方图都调用上题的方法，就可以得到矩形面积。其中构造直方图的方法为：对于每一个点，如果是0，则赋0；如果是1，就赋之前的值(上一层)加1。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> maximalRectangle(vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>matrix) {
+        <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> height;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> matrix.size(); <span style="color:#f92672">++</span>i) {
+            height.resize(matrix[i].size());
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> matrix[i].size(); <span style="color:#f92672">++</span>j) {
+                height[j] <span style="color:#f92672">=</span> matrix[i][j] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> height[j]);
+            }
+            res <span style="color:#f92672">=</span> max(res, largestRectangleArea(height));
+        }
+        <span style="color:#66d9ef">return</span> res;
+    }
+    <span style="color:#66d9ef">int</span> largestRectangleArea(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>height) {
+        <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> s;
+        height.push_back(<span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> height.size(); <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (s.empty() <span style="color:#f92672">||</span> height[s.top()] <span style="color:#f92672">&lt;=</span> height[i]) s.push(i);
+            <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> s.top();
+                s.pop();
+                res <span style="color:#f92672">=</span> max(res, height[tmp] <span style="color:#f92672">*</span> (s.empty() <span style="color:#f92672">?</span> i : (i <span style="color:#f92672">-</span> s.top() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)));
+                <span style="color:#f92672">--</span>i;
+            }
+        }
+        <span style="color:#66d9ef">return</span> res;
+    }
+};
+</code></pre></div>
+<p>其中，这题仍然可以用DP的方法，不过看起来比较复杂，所以先暂时留着，附上链接，之后总结一下DP的流程只有再总结一下。</p>
+
+<p><a href="https://blog.csdn.net/maxiaotiaoti/article/details/62230381">DP思路</a></p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/leetcode"><span class="tag">Leetcode</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/lrih_and_mr/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
