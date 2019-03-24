@@ -186,6 +186,22 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/" class="post-link">Ubuntu初始化配置流程</a></h3>
+    <p class="post-meta">@z2w · Mar 25, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">以下记录一下Ubuntu的配置流程，持续更新
+ 环境：ubuntu 16.04.6 Desktop
+ 一、更新apt源 1、源文件备份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 2、编辑源列表文件
+sudo vim /etc/apt/sources.list 3、将原来的列表删除，添加如下内容
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse # deb-src https://mirrors.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/lrih_and_mr/" class="post-link">Largest Rectangle in Histogram &amp; Maximal Rectangle</a></h3>
     <p class="post-meta">@z2w · Mar 21, 2019 · 2 min read</p>
   </header>
@@ -366,21 +382,6 @@ classSolution { public: uint32_t res = 0; for (int i = 0; i &lt; 32; i&#43;&#43;
 classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &gt;&gt; 16) | (n &lt;&lt; 16); n = ((n &amp; 0xff00ff00) &gt;&gt; 8) | ((n &amp; 0x00ff00ff) &lt;&lt; 8); n = ((n &amp; 0xf0f0f0f0) &gt;&gt; 4) | ((n &amp; 0x0f0f0f0f) &lt;&lt; 4); n = ((n &amp; 0xcccccccc) &gt;&gt; 2) | ((n &amp; 0x33333333) &lt;&lt; 2); n = ((n &amp; 0xaaaaaaaa) &gt;&gt; 1) | ((n &amp; 0x55555555) &lt;&lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/string_rotate/">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/new_hugo_blog/" class="post-link">搭建hugo博客</a></h3>
-    <p class="post-meta">@z2w · Mar 7, 2019 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">在很久之前就想拥有一个自己的博客，尝试过wordpress，不过可惜没找到一个喜欢的theme，并且由于wordpress不能原生支持markdown。遂放弃，后来又听说了hugo、hexo之类的静态网页不过。刚开始被复杂的生成流程吓尿，所有现在记录一下博客的搭建过程。
-本地开发环境 下面将以macOS为例.
-本地安装hugo $ brew install hugo $ hugo version # 检查是否安装成功 $ cd ~/Sites $ hugo new site my-blog $ cd my-blog 安装主题 $ cd themes $ git clone https://github.com/laozhu/hugo-nuo 根据需要替换主题目录下static/img里面的图片
-配置 参考exampleSite里面的config.toml修改配置文件
-baseURL = &#34;http://blog.zhaoziwen.com.cn&#34; languageCode = &#34;en-us&#34; title = &#34;z2w_mose&#34; theme = &#34;hugo-nuo&#34; copyright = &#34;© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/new_hugo_blog/">Read More →</a>
   </footer>
 </article>
  

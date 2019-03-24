@@ -24,6 +24,20 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Ubuntu初始化配置流程</title>
+      <link>http://blog.zhaoziwen.com.cn/post/ubuntu_start/</link>
+      <pubDate>Mon, 25 Mar 2019 00:02:12 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/ubuntu_start/</guid>
+      <description>以下记录一下Ubuntu的配置流程，持续更新
+ 环境：ubuntu 16.04.6 Desktop
+ 一、更新apt源 1、源文件备份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 2、编辑源列表文件
+sudo vim /etc/apt/sources.list 3、将原来的列表删除，添加如下内容
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse # deb-src https://mirrors.</description>
+    </item>
+    
+    <item>
       <title>Largest Rectangle in Histogram &amp; Maximal Rectangle</title>
       <link>http://blog.zhaoziwen.com.cn/post/lrih_and_mr/</link>
       <pubDate>Thu, 21 Mar 2019 01:08:23 +0800</pubDate>

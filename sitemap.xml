@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/ubuntu_start/</loc>
+    <lastmod>2019-03-25T00:02:12+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/lrih_and_mr/</loc>
     <lastmod>2019-03-21T01:08:23+08:00</lastmod>
   </url>
@@ -87,13 +92,19 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-21T01:08:23+08:00</lastmod>
+    <lastmod>2019-03-25T00:02:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/</loc>
     <lastmod>2019-03-07T18:58:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhaoziwen.com.cn/tags/ubuntu/</loc>
+    <lastmod>2019-03-25T00:02:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   
