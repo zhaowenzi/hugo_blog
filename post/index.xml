@@ -7,10 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 00:32:46 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Mar 2019 01:07:04 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Maximal Square</title>
+      <link>http://blog.zhaoziwen.com.cn/post/maximal_square/</link>
+      <pubDate>Wed, 27 Mar 2019 01:07:04 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/maximal_square/</guid>
+      <description>[LeetCode] 221. Given a 2D binary matrix filled with 0&amp;rsquo;s and 1&amp;rsquo;s, find the largest square containing only 1&amp;rsquo;s and return its area.
+Example:
+Input:
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+Output: 4
+ 这又是一道典型的DP题目，但是我依然没有任何思路。
+解决办法：
+首先考虑第一行和第一列，如果为&amp;rsquo;1&amp;rsquo;，则该位置上的DP数组为1，否则为0。
+然后再考虑中间，以中间某个点为右下角的最大的正方形即为上方、左方和左上方为右下角的最大正方形中的最小值加一。
+即动态规划递推式为： $$ dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1 $$
+classSolution { public: int maximalSquare(vector&amp;lt;vector&amp;lt;char&amp;gt;&amp;gt;&amp;amp; matrix) { if (matrix.</description>
+    </item>
     
     <item>
       <title>Course Schedule</title>

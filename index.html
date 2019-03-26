@@ -186,6 +186,30 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/maximal_square/" class="post-link">Maximal Square</a></h3>
+    <p class="post-meta">@z2w · Mar 27, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 221. Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.
+Example:
+Input:
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+Output: 4
+ 这又是一道典型的DP题目，但是我依然没有任何思路。
+解决办法：
+首先考虑第一行和第一列，如果为’1’，则该位置上的DP数组为1，否则为0。
+然后再考虑中间，以中间某个点为右下角的最大的正方形即为上方、左方和左上方为右下角的最大正方形中的最小值加一。
+即动态规划递推式为： $$ dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) &#43; 1 $$
+classSolution { public: int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) { if (matrix.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/maximal_square/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/course_schedule/" class="post-link">Course Schedule</a></h3>
     <p class="post-meta">@z2w · Mar 26, 2019 · 2 min read</p>
   </header>
@@ -353,29 +377,6 @@ For example, given n = 3, a solution set is:
 classSolution { public: vector&lt;string&gt; generateParenthesis(int n) { vector&lt;string&gt; res; generateParenthesisDFS(n, n, &#34;&#34;, res); return res; } void generateParenthesisDFS(int left, int right, string out, vector&lt;string&gt; &amp;res) { if(left &gt; right) return; if(left == 0 &amp;&amp; right == 0) res.</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/" class="post-link">Median_of_two_sorted_arrays</a></h3>
-    <p class="post-meta">@z2w · Mar 11, 2019 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">Median of two sorted arrays 核心是将原问题转变成寻找第k小数的问题（假设两个原序列升序排列）
-首先假设数组A和B的元素个数都大于k/2，比较A[k/2-1]和B[k/2-1]两个元素，这两个元素分别表示A的第k/2小的元素和B的第k/2小的元素。
-1、A[k/2-1]&lt;B[k/2-1]，表示A[0]到A[k/2-1]的元素都在A和B合并之后的前k小的元素中，所以我们抛弃它。
-2、A[k/2-1]&gt;B[k/2-1]，同上
-3、A[k/2-1]=B[k/2-1]，这个数即第K小的数
- [LeetCode] 4. Median of Two Sorted Arrays
-There are two sorted arrays nums1 and nums2 of size m and n respectively.
-Find the median of the two sorted arrays. The overall run time complexity should be O(log(m&#43;n)).
-Example:
-nums1 = [1, 3]
-nums2 = [2]
-The midian is 2.0
- classSolution { public: double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) { int m = nums1.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/">Read More →</a>
   </footer>
 </article>
  

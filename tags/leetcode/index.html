@@ -192,6 +192,32 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/maximal_square/" class="post-link">Maximal Square</a></h3>
+    <p class="post-meta">@z2w · Mar 27, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 221. Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.
+Example:
+Input:
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+Output: 4
+ 这又是一道典型的DP题目，但是我依然没有任何思路。
+解决办法：
+首先考虑第一行和第一列，如果为’1’，则该位置上的DP数组为1，否则为0。
+然后再考虑中间，以中间某个点为右下角的最大的正方形即为上方、左方和左上方为右下角的最大正方形中的最小值加一。
+即动态规划递推式为： $$ dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) &#43; 1 $$
+classSolution { public: int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) { if (matrix.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/maximal_square/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/course_schedule/" class="post-link">Course Schedule</a></h3>
     <p class="post-meta">@z2w · Mar 26, 2019 · 2 min read</p>
   </header>

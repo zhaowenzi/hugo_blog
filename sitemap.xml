@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/maximal_square/</loc>
+    <lastmod>2019-03-27T01:07:04+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/course_schedule/</loc>
     <lastmod>2019-03-26T00:32:46+08:00</lastmod>
   </url>
@@ -91,13 +96,13 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/leetcode/</loc>
-    <lastmod>2019-03-26T00:32:46+08:00</lastmod>
+    <lastmod>2019-03-27T01:07:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-26T00:32:46+08:00</lastmod>
+    <lastmod>2019-03-27T01:07:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
