@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/trie_tree/</loc>
+    <lastmod>2019-03-28T00:27:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/maximal_square/</loc>
     <lastmod>2019-03-27T01:07:04+08:00</lastmod>
   </url>
@@ -102,7 +107,7 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-03-27T01:07:04+08:00</lastmod>
+    <lastmod>2019-03-28T00:27:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -127,6 +132,12 @@
   <url>
     <loc>http://blog.zhaoziwen.com.cn/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhaoziwen.com.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2019-03-28T00:27:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
