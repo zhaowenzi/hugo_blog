@@ -186,6 +186,33 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/tcp/" class="post-link">传输控制协议TCP概述</a></h3>
+    <p class="post-meta">@z2w · Apr 2, 2019 · 2 min read</p>
+  </header>
+  
+  <p class="post-summary">TCP主要特点  TCP是面向连接的运输层协议。意味着在使用TCP之前，必须要先建立TCP连接；在完成数据传送后，释放已经建立的TCP连接。 每一条TCP连接只能有两个端点(endpoint)，即TCP连接是点对点的。 TCP提供可靠交付的服务。 TCP提供全双工通信。 面向字节流。TCP并不关心应用程序一次把多长的报文发送到TCP的缓存中，而是根据对方给出的窗口值和当前网络拥塞的程度来决定应该包含多少个字节（与UDP不同，由应用程序给出）  TCP的连接 TCP连接的端点叫做套接字(socket)，即由端口号拼接到IP地址后面构成，例如：192.3.4.5:80，每一条TCP连接唯一地被通信两端的两个端点(即两个套接字)所确定
+可靠传输的工作原理 停止等待协议 “停止等待”就是每发送完一个分组就停止发送，等待对方的确认，在收到确认之后再发送下一个分组。
+ 无差错情况(a)
+ 出现差错(b)
+ A在发送完一个分组后，暂时保留已发送的分组的副本，收到相应确认后消除副本。 分组和确认分组必须进行编号。 超时计时器设置的重传时间应当比数据在分组传输的平均时间更长一些。  确认丢失和确认迟到
+ 确认丢失  丢弃这个重复的分组，不向上交付。 向A发送确认  确认迟到  A收到重复确认后丢弃。 B收到重复的分组后按确认丢失处理。   上述这种可靠的传输协议常称为自动重传请求ARQ(Automatic Repeat reQuest)
+ 信道利用率
+$$U=\frac{T_{D}}{T_{D} &#43; RTT &#43; T_{A}}$$
+为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用流水线传输，该方式会使用连续ARQ协议和滑动窗口协议。
+  连续ARQ协议 发送方每收到一个确认，就把发送窗口向前滑动一个分组。接收方一般是采用累计确认的方式，即接收方不必对收到的分组逐个发送确认，而是在收到几个分组之后，对按序到达的最后一个分组发送确认。
+TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如下图)，后面有4n字节是根据需要而增加的选项。因此TCP首部的最小长度是20字节。
+各字段意义如下：
+ 源端口和目的端口。
+ 序号。范围是$[0, 2^{32} - 1]$，在一个TCP连接中传送的字节流中的每一个字节都按序编号。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号。
+ 确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。
+ 数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。”数据偏移”的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。
+ 保留。保留为今后使用，目前应置为0。后跟6个控制位。</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/tcp/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/" class="post-link">Best Time to Buy and Sell Stock with Cooldown</a></h3>
     <p class="post-meta">@z2w · Apr 1, 2019 · 1 min read</p>
   </header>
@@ -337,29 +364,6 @@ board =
 ​ [‘A’, ’D’, ‘E’, ‘E’]</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/word_search/">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/edit_distance/" class="post-link">Edit Distance 编辑距离</a></h3>
-    <p class="post-meta">@z2w · Mar 19, 2019 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 72. Edit Distance
-Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2
-You have the following 3 operations permitted on a word:
- Insert a character Delete a character Replace a character  Example:
-Input: word1 = “horse”, word2 = “ros”
-Output: 3
-Explanation:
-horse -&gt; rorse
-rorse -&gt; rose
-rose -&gt; ros
-[Edit Distance]: https://leetcode.com/problems/edit-distance
- 这道题一开始是能想到实用动态规划的，但是题目理解有点问题，所以没能推出DP的初始状态和状态转移方程。
-思路：</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/edit_distance/">Read More →</a>
   </footer>
 </article>
  

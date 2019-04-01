@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>传输控制协议TCP概述</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="TCP主要特点  TCP是面向连接的运输层协议。意味着在使用TCP之前，必须要先建立TCP连接；在完成数据传送后，释放已经建立的TCP连接。 每一条TCP连接只能有两个端点(endpoint)，即TCP连接是点对点的。 TCP提供可靠交付的服务。 TCP提供全双工通信。 面向字节流。TCP并不关心应用程序一次把多长的报文发送到TCP的缓存中，而是根据对方给出的窗口值和当前网络拥塞的程度来决定应该包含多少个字节（与UDP不同，由应用程序给出）  TCP的连接 TCP连接的端点叫做套接字(socket)，即由端口号拼接到IP地址后面构成，例如：192.3.4.5:80，每一条TCP连接唯一地被通信两端的两个端点(即两个套接字)所确定
+可靠传输的工作原理 停止等待协议 &amp;ldquo;停止等待&amp;rdquo;就是每发送完一个分组就停止发送，等待对方的确认，在收到确认之后再发送下一个分组。
+ 无差错情况(a)
+ 出现差错(b)
+ A在发送完一个分组后，暂时保留已发送的分组的副本，收到相应确认后消除副本。 分组和确认分组必须进行编号。 超时计时器设置的重传时间应当比数据在分组传输的平均时间更长一些。  确认丢失和确认迟到
+ 确认丢失  丢弃这个重复的分组，不向上交付。 向A发送确认  确认迟到  A收到重复确认后丢弃。 B收到重复的分组后按确认丢失处理。   上述这种可靠的传输协议常称为自动重传请求ARQ(Automatic Repeat reQuest)
+ 信道利用率
+$$U=\frac{T_{D}}{T_{D} &#43; RTT &#43; T_{A}}$$
+为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用流水线传输，该方式会使用连续ARQ协议和滑动窗口协议。
+  连续ARQ协议 发送方每收到一个确认，就把发送窗口向前滑动一个分组。接收方一般是采用累计确认的方式，即接收方不必对收到的分组逐个发送确认，而是在收到几个分组之后，对按序到达的最后一个分组发送确认。
+TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如下图)，后面有4n字节是根据需要而增加的选项。因此TCP首部的最小长度是20字节。
+各字段意义如下：
+ 源端口和目的端口。
+ 序号。范围是$[0, 2^{32} - 1]$，在一个TCP连接中传送的字节流中的每一个字节都按序编号。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号。
+ 确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。
+ 数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。&amp;rdquo;数据偏移&amp;rdquo;的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。
+ 保留。保留为今后使用，目前应置为0。后跟6个控制位。">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="传输控制协议TCP概述">
+    <meta name="twitter:description" content="TCP主要特点  TCP是面向连接的运输层协议。意味着在使用TCP之前，必须要先建立TCP连接；在完成数据传送后，释放已经建立的TCP连接。 每一条TCP连接只能有两个端点(endpoint)，即TCP连接是点对点的。 TCP提供可靠交付的服务。 TCP提供全双工通信。 面向字节流。TCP并不关心应用程序一次把多长的报文发送到TCP的缓存中，而是根据对方给出的窗口值和当前网络拥塞的程度来决定应该包含多少个字节（与UDP不同，由应用程序给出）  TCP的连接 TCP连接的端点叫做套接字(socket)，即由端口号拼接到IP地址后面构成，例如：192.3.4.5:80，每一条TCP连接唯一地被通信两端的两个端点(即两个套接字)所确定
+可靠传输的工作原理 停止等待协议 &amp;ldquo;停止等待&amp;rdquo;就是每发送完一个分组就停止发送，等待对方的确认，在收到确认之后再发送下一个分组。
+ 无差错情况(a)
+ 出现差错(b)
+ A在发送完一个分组后，暂时保留已发送的分组的副本，收到相应确认后消除副本。 分组和确认分组必须进行编号。 超时计时器设置的重传时间应当比数据在分组传输的平均时间更长一些。  确认丢失和确认迟到
+ 确认丢失  丢弃这个重复的分组，不向上交付。 向A发送确认  确认迟到  A收到重复确认后丢弃。 B收到重复的分组后按确认丢失处理。   上述这种可靠的传输协议常称为自动重传请求ARQ(Automatic Repeat reQuest)
+ 信道利用率
+$$U=\frac{T_{D}}{T_{D} &#43; RTT &#43; T_{A}}$$
+为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用流水线传输，该方式会使用连续ARQ协议和滑动窗口协议。
+  连续ARQ协议 发送方每收到一个确认，就把发送窗口向前滑动一个分组。接收方一般是采用累计确认的方式，即接收方不必对收到的分组逐个发送确认，而是在收到几个分组之后，对按序到达的最后一个分组发送确认。
+TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如下图)，后面有4n字节是根据需要而增加的选项。因此TCP首部的最小长度是20字节。
+各字段意义如下：
+ 源端口和目的端口。
+ 序号。范围是$[0, 2^{32} - 1]$，在一个TCP连接中传送的字节流中的每一个字节都按序编号。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号。
+ 确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。
+ 数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。&amp;rdquo;数据偏移&amp;rdquo;的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。
+ 保留。保留为今后使用，目前应置为0。后跟6个控制位。">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="传输控制协议TCP概述">
+  <meta property="og:description" content="TCP主要特点  TCP是面向连接的运输层协议。意味着在使用TCP之前，必须要先建立TCP连接；在完成数据传送后，释放已经建立的TCP连接。 每一条TCP连接只能有两个端点(endpoint)，即TCP连接是点对点的。 TCP提供可靠交付的服务。 TCP提供全双工通信。 面向字节流。TCP并不关心应用程序一次把多长的报文发送到TCP的缓存中，而是根据对方给出的窗口值和当前网络拥塞的程度来决定应该包含多少个字节（与UDP不同，由应用程序给出）  TCP的连接 TCP连接的端点叫做套接字(socket)，即由端口号拼接到IP地址后面构成，例如：192.3.4.5:80，每一条TCP连接唯一地被通信两端的两个端点(即两个套接字)所确定
+可靠传输的工作原理 停止等待协议 &amp;ldquo;停止等待&amp;rdquo;就是每发送完一个分组就停止发送，等待对方的确认，在收到确认之后再发送下一个分组。
+ 无差错情况(a)
+ 出现差错(b)
+ A在发送完一个分组后，暂时保留已发送的分组的副本，收到相应确认后消除副本。 分组和确认分组必须进行编号。 超时计时器设置的重传时间应当比数据在分组传输的平均时间更长一些。  确认丢失和确认迟到
+ 确认丢失  丢弃这个重复的分组，不向上交付。 向A发送确认  确认迟到  A收到重复确认后丢弃。 B收到重复的分组后按确认丢失处理。   上述这种可靠的传输协议常称为自动重传请求ARQ(Automatic Repeat reQuest)
+ 信道利用率
+$$U=\frac{T_{D}}{T_{D} &#43; RTT &#43; T_{A}}$$
+为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用流水线传输，该方式会使用连续ARQ协议和滑动窗口协议。
+  连续ARQ协议 发送方每收到一个确认，就把发送窗口向前滑动一个分组。接收方一般是采用累计确认的方式，即接收方不必对收到的分组逐个发送确认，而是在收到几个分组之后，对按序到达的最后一个分组发送确认。
+TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如下图)，后面有4n字节是根据需要而增加的选项。因此TCP首部的最小长度是20字节。
+各字段意义如下：
+ 源端口和目的端口。
+ 序号。范围是$[0, 2^{32} - 1]$，在一个TCP连接中传送的字节流中的每一个字节都按序编号。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号。
+ 确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。
+ 数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。&amp;rdquo;数据偏移&amp;rdquo;的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。
+ 保留。保留为今后使用，目前应置为0。后跟6个控制位。">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/tcp/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/tcp/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">传输控制协议TCP概述</h1>
+      <p class="post-meta">@z2w · Apr 2, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<h4 id="tcp主要特点">TCP主要特点</h4>
+
+<ol>
+<li>TCP是<strong>面向连接的运输层协议</strong>。意味着在使用TCP之前，必须要先建立TCP连接；在完成数据传送后，释放已经建立的TCP连接。</li>
+<li>每一条TCP连接只能有<strong>两个端点(endpoint)</strong>，即TCP连接是<strong>点对点</strong>的。</li>
+<li>TCP提供<strong>可靠交付</strong>的服务。</li>
+<li>TCP提供<strong>全双工通信</strong>。</li>
+<li><strong>面向字节流</strong>。TCP并不关心应用程序一次把多长的报文发送到TCP的缓存中，而是根据对方给出的窗口值和当前网络拥塞的程度来决定应该包含多少个字节（与UDP不同，由应用程序给出）<img src="http://blog.zhaoziwen.com.cn/images/tcp_1.png" alt="" /></li>
+</ol>
+
+<h4 id="tcp的连接">TCP的连接</h4>
+
+<p>TCP连接的端点叫做<strong>套接字(socket)</strong>，即由端口号拼接到IP地址后面构成，例如：192.3.4.5:80，每一条TCP连接唯一地被通信两端的两个端点(即两个套接字)所确定</p>
+
+<h4 id="可靠传输的工作原理">可靠传输的工作原理</h4>
+
+<h5 id="停止等待协议">停止等待协议</h5>
+
+<p>&ldquo;停止等待&rdquo;就是每发送完一个分组就停止发送，等待对方的确认，在收到确认之后再发送下一个分组。</p>
+
+<ol>
+<li><p>无差错情况(a)</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_2.png" alt="" /></p></li>
+
+<li><p>出现差错(b)</p>
+
+<ol>
+<li>A在发送完一个分组后，<strong>暂时保留已发送的分组的副本</strong>，收到相应确认后消除副本。</li>
+<li>分组和确认分组必须进行编号。</li>
+<li>超时计时器设置的重传时间<strong>应当比数据在分组传输的平均时间更长一些</strong>。</li>
+</ol></li>
+
+<li><p>确认丢失和确认迟到</p>
+
+<ol>
+<li>确认丢失
+
+<ol>
+<li>丢弃这个重复的分组，不向上交付。</li>
+<li>向A发送确认</li>
+</ol></li>
+<li>确认迟到
+
+<ol>
+<li>A收到重复确认后丢弃。</li>
+<li>B收到重复的分组后按确认丢失处理。</li>
+</ol></li>
+</ol>
+
+<p>上述这种可靠的传输协议常称为<strong>自动重传请求ARQ(Automatic Repeat reQuest)</strong></p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_3.png" alt="" /></p></li>
+
+<li><p>信道利用率</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_4.png" alt="" /> $$U=\frac{T_{D}}{T_{D} + RTT + T_{A}}$$</p>
+
+<p>为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用流水线传输，该方式会使用<strong>连续ARQ协议</strong>和<strong>滑动窗口协议</strong>。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_5.png" alt="" /></p></li>
+</ol>
+
+<h5 id="连续arq协议">连续ARQ协议</h5>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_6.png" alt="" /></p>
+
+<p>发送方每收到一个确认，就把发送窗口向前滑动一个分组。接收方一般是采用<strong>累计确认</strong>的方式，即接收方不必对收到的分组逐个发送确认，而是在收到几个分组之后，对<strong>按序到达的最后一个分组发送确认</strong>。</p>
+
+<h4 id="tcp报文段的首部格式">TCP报文段的首部格式</h4>
+
+<p>TCP报文段首部的前20个字节是固定的(如下图)，后面有4n字节是根据需要而增加的选项。因此TCP首部的最小长度是20字节。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_7.png" alt="" /></p>
+
+<p>各字段意义如下：</p>
+
+<ol>
+<li><p>源端口和目的端口。</p></li>
+
+<li><p>序号。范围是$[0, 2^{32} - 1]$，在一个TCP连接中传送的字节流中的每一个字节都按序编号。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号。</p></li>
+
+<li><p>确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。</p></li>
+
+<li><p>数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。&rdquo;数据偏移&rdquo;的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。</p></li>
+
+<li><p>保留。保留为今后使用，目前应置为0。后跟6个控制位。</p></li>
+
+<li><p>紧急URG(URGent)。当URG=1时，表明紧急指针字段有效。系统应尽快传送此报文段。</p></li>
+
+<li><p>确认ACK(ACKnowledgment)。当ACK=1时，表名确认号字段有效。TCP规定，在连接建立后所有传送的报文段都必须把ACK置为1。</p></li>
+
+<li><p>推送PSH(PuSH)。发送方TCP把PSH置1时，接收方TCP收到PSH=1的报文段，就尽快地交付接受应用进程，而不再等到整个缓存都填满了后再向上交付。</p></li>
+
+<li><p>复位RST(ReSeT)。当RST=1时，表示TCP连接中出现严重错误，必须释放连接，然后再重新建立运输连接。RST置1还用来拒绝一个非法的报文段或者拒绝打开一个连接。</p></li>
+
+<li><p>同步SYN(SYNchronization)。在连接建立是用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文段。对方若同意建立连接，则应在响应的报文段中使SYN=1和ACK=1。因此，SYN置为1就表示这是一个连接请求或连接接受报文。</p></li>
+
+<li><p>终止FIN(FINis)。用来释放一个连接，置为1是生效，请求释放运输连接。</p></li>
+
+<li><p>窗口。窗口指的是发送本报文段的一方的<strong>接受窗口</strong>。窗口值告诉对方：从本报文段首部的确认号算起，接收方目前允许对方发送的数据量(字节为单位)。</p></li>
+
+<li><p>检验和。范围包括首部和数据两部分。和UDP一样在计算检验和时，要在TCP报文段的前面加上12字节的伪首部。格式与UDP一样，应把第4个字段改为6，第5个字段中的UDP长度改为TCP长度。</p></li>
+
+<li><p>紧急指针。仅在URG=1时才有意义，指出本报文段中的紧急数据的字节数，即紧急指针指出了紧急数据的末尾在报文段中的位置。</p></li>
+
+<li><p>选项。最长40字节。没有使用是，TCP的首部长度为20字节。</p>
+
+<p>最初TCP只规定一种选项，即<strong>最大报文段长度MSS（Maximum Segment Size）</strong>，即数据字段的最大长度。</p>
+
+<p>随后增加了<strong>窗口扩大、时间戳、选择确认（ASCK）</strong>等选项</p></li>
+</ol>
+
+<h4 id="tcp可靠传输的实现">TCP可靠传输的实现</h4>
+
+<h5 id="以字节为单位的滑动窗口">以字节为单位的滑动窗口</h5>
+
+<p>TCP的滑动窗口以字节为单位，下面讨论A向B发送数据。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_8.png" alt="" /></p>
+
+<p>发送窗口的后沿的变化有两种，即不动(没有收到新的确认)和前移(收到了新的确认)。前沿也有两种，不断前移和不动(没有收到新的确认或者收到新的确认同时接收方窗口变小)。</p>
+
+<h5 id="超时重传时间的选择">超时重传时间的选择</h5>
+
+<p>TCP采用了一种自适应算法，每测量到一个新的RTT样本，就按下式重新计算一次$RTT_{S}$(加权平均往返时间)：
+$$
+新的RTT_{S} = (1 - α) * (旧的RTT_{S}) + α * (新的RTT样本)
+$$
+建议标准值为1/8即0.125。</p>
+
+<p>所以，超时计时器设置的超时重传时间RTO(RetransmissionTime-Out)应略大于上面得出的加权平均往返时间$RTT_{S}$。建议计算式如下：
+$$
+RTO = RTT_{S} + 4 * RTT_{D}
+$$
+而$RDD_{D}$是RTT的偏差的加权平均值，与$RTT_{S}$和新的RTT样本之差有关。建议计算式如下：</p>
+
+<p>第一次测量时，$RTT_{D}$值取为测量到的RTT样本值的一半，在以后的测量中：
+$$
+新的RTT_{D}=(1-β) * (旧的RTT_{D})+β * | RTT_{S}-新的RTT样本|
+$$
+这里β的推荐值是1/4，即0.25。</p>
+
+<p>为了解决无法确实确认报文段是对先发送的报文段的确认还是对后来重传的报文段的确认，<strong>在计算加权平均RTTS时，只要报文段重传了，就不采用其往返时间样本</strong>，同时进一步的修正：<strong>报文段每重传一次，就把超时重传时间RTO增加到原来的2倍，当不在发生重传时，才根据上式进行计算</strong>。</p>
+
+<h5 id="选择确认sack">选择确认SACK</h5>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_9.png" alt="" /></p>
+
+<p>和前后不连续的每一个字节块都有两个边界：左边界和右边界。左边界指出字节块的第一个字节的序号，但右边界减1才是字节块中的最后一个序号(与确认号类似)。</p>
+
+<p>如果使用选择确认SACK，需要在建立连接时在TCP首部的选项中加入&rdquo;允许SACK&rdquo;的选项。由于首部选项最多只能40字节，而指明一个边界需要4字节，因此在选项中最多只能指明4个字节块的边界信息。其中还需要两个字节，一个用来指明是SACK选项，另一个指明这个选项占多少字节。</p>
+
+<h4 id="tcp的流量控制">TCP的流量控制</h4>
+
+<h5 id="利用滑动窗口实现流量控制">利用滑动窗口实现流量控制</h5>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_10.png" alt="" /></p>
+
+<p>TCP为每一个连接设有一个持续计时器(persistence timer)。只要TCP连接的一方收到对方的零窗口通知，就启动持续计时器。若持续计时器设置的时间到期，就发送一个零窗口探测报文段，而对方就在确认这个探测报文段时给出现在的窗口值。如果仍为0，就重新设置持续计时器。</p>
+
+<h5 id="tcp的传输效率">TCP的传输效率</h5>
+
+<p>不同的机制来控制TCP报文段的发送时机：</p>
+
+<ol>
+<li>TCP维持一个变量，等于最大报文段长度MSS。</li>
+<li>由发送发的应用进程指明要求发送报文段，即TCP支持的推送（push）操作。</li>
+<li>发送方的一个计时期限到了，就把当前已有的缓存数据装入报文段（不超过MSS）发出去。</li>
+</ol>
+
+<p>Nagle算法：若发送应用程序吧要发送的数据逐个字节送到TCP发送缓存，则发送方就把第一个数据字节先发送出去，把后面到达的数据字节都缓存起来。当发送方收到第一个数据字节的确认后，再把发送缓存中的所有数据组装成一个报文段发送出去。同时，当到达的数据已达到发送窗口大小的一半或者已达到报文段的最大长度时，就立即发送一个报文段。</p>
+
+<p>解决糊涂窗口综合征(接受缓存已满，应用程序每次只读取1个字节)，可以让接收方等待一段时间，使得接受缓存已有足够空间容纳一个最长的报文段，或者等到接受缓存已有一半空闲的空间。只要出现任何一种情况，接收方就发出确认报文，并向发送方通知当前的窗口大小。</p>
+
+<h4 id="tcp的拥塞控制">TCP的拥塞控制</h4>
+
+<h5 id="拥塞控制的一般原理">拥塞控制的一般原理</h5>
+
+<p>拥塞控制指的是防止过多的数据注入网络，使网络中的路由器或链路不致过载。</p>
+
+<p>流量控制往往是指点对点通信量的控制，是个端到端的问题。抑制发送端的速率，以便接收端来得及接收。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_11.png" alt="" /></p>
+
+<h5 id="tcp的拥塞控制方法">TCP的拥塞控制方法</h5>
+
+<p>TCP进行拥塞控制的算法有四种，即<strong>慢开始(slow-start)</strong>、<strong>拥塞避免(congestion avoidance)</strong>、<strong>快重传(fast retransmit)</strong>、<strong>快恢复(fast recovery)</strong></p>
+
+<p>发送方维持一个叫做拥塞窗口cwnd(congestion window)的状态变量，取决于网络的拥塞程度，并动态变化。发送方的发送窗口等于拥塞窗口。</p>
+
+<p>原则：只要网络没有出现拥塞， 拥塞窗口就可以再增大一些。但只要出现拥塞或有可能出现拥塞，就必须把拥塞窗口减小一些。判断网络拥塞的依据就是出现了超时。</p>
+
+<p><strong>慢开始算法：</strong></p>
+
+<p>初始拥塞窗口cwnd设置为不超过2至4个SMSS的数值。具体规定省略。</p>
+
+<p>在每收到一个对新的报文段的确认之后，可以把拥塞窗口增加最多一个SMSS的数值。<strong>每经过一个传输轮次(transmission round)，拥塞窗口cwnd就加倍</strong></p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_12.png" alt="" /></p>
+
+<p>为了防止拥塞窗口cwnd增长过大引起网络拥塞，还需要设置一个慢开始门限ssthresh状态变量：</p>
+
+<p>当cwnd &lt; ssthresh时，使用慢开始算法</p>
+
+<p>当cwnd &gt; ssthresh时，使用拥塞避免算法</p>
+
+<p>当cwnd = ssthresh时，两种都可以</p>
+
+<p><strong>拥塞避免：</strong></p>
+
+<p>没经过一个往返RTT就把发送方的拥塞窗口cwnd加1，而不是成倍增长。</p>
+
+<p>当出现超时时，调整ssthresh = cwnd / 2，并同时设置拥塞窗口cwnd = 1，进入慢开始阶段</p>
+
+<p>当出现收到3个重复确认，应立即进行重传，并执行快恢复算法，即调整ssthresh = cwnd / 2，同时设置cwnd = ssthresh，并开始执行拥塞避免算法。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_13.png" alt="" /></p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_14.png" alt="" /></p>
+
+<h5 id="主动队列管理aqm">主动队列管理AQM</h5>
+
+<p>为了避免发生网络中的全局同步现象，AQM指在队列长度达到某个值得警惕的数值时就主动丢弃分组。<strong>随机早期检测RED(Random Early Detection)</strong>维持两个参数，即最小门限和最大门限：</p>
+
+<p>若平均队列长度小于最小门限，新到达的分组放入队列进行排队。</p>
+
+<p>若超过最大门限，则把新到达的分组丢弃。</p>
+
+<p>若在之间，则按概率p丢弃。</p>
+
+<h4 id="tcp的运输连接管理">TCP的运输连接管理</h4>
+
+<p>运输连接有三个阶段：<strong>连接建立</strong>、<strong>数据传送</strong>、<strong>连接释放</strong></p>
+
+<h5 id="tcp的连接建立">TCP的连接建立</h5>
+
+<p>握手需要在客户和服务器之间交换三个TCP报文段。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_15.png" alt="" /></p>
+
+<p>最初两端的TCP进程都处于CLOSED状态。A(客户)主动打开连接，B(服务器)被动打开连接。</p>
+
+<p>一开始，B的TCP服务器进程创建传输控制块TCB，准备接受客户进程的连接请求。然后服务器进程处于LISTEN状态，等待客户的连接请求。</p>
+
+<p>A的TCP客户端创建TCB，然后在打算建立TCP连接时，向B发出连接请求报文段，这是首部中的SYN=1，同时选择一个初始序号seq = x。SYN报文段(SYN=1的报文段)不能携带数据，但要消耗一个序号。这是TCP客户进程进入SYN-SENT状态。</p>
+
+<p>B收到连接请求后，如同意建立连接，则向A发送确认。在确认报文段中应把SYN位和ACK位都置为1，确认号是ack = x + 1，同时也为自己选择一个初始序号seq = y。这个报文段也不能携带数据，但同样消耗一个序号。这是TCP服务器进程进入SYN-RCVD状态。</p>
+
+<p>TCP客户进程收到B的确认之后，还要向B给出确认。确认报文段ACK=1，确认号ack = y + 1，而自己的序号seq = x + 1。ACK报文段可以携带数据。但如果不携带数据则不消耗序号，在这种情况下，下一个数据报文段的序号仍是seq = x + 1。这时TCP连接已经建立，A进入ESTABLISHED状态。</p>
+
+<p>当B收到A的确认后，也进入ESTABLISHED状态。</p>
+
+<p>A最后发送一次确认的意义：为了防止已失效的连接请求报文段突然传送到B，因而产生错误。</p>
+
+<h5 id="tcp的连接释放">TCP的连接释放</h5>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_16.png" alt="" /></p>
+
+<p>A和B都处于ESTABLISHED状态。</p>
+
+<p>A的应用进程先向其TCP发出连接释放报文段，并停止再发送数据，主动关闭TCP连接。A把连接释放报文段的首部的终止控制位FIN置1，其序号seq = u，它等于前面已传送过的数据的最后一个字节加1。这时A进入FIN-WAIT-1状态，等待B的确认。FIN报文段即使不携带数据，也消耗一个序号。</p>
+
+<p>B收到连接释放报文段后即发出确认，确认号是ack = u + 1，而这个报文段自己的序号是v，等于B前面已传送过的数据的最后一个字节的序号加1。然后B进入CLOSE-WAIT状态。这是的TCP连接处于半关闭(half-close)状态，A已经没有数据发送了，但B若要发送数据，A仍要接受。即B到A这个方向的连接并未关闭。</p>
+
+<p>A收到来自B的确认后，就进入FIN-WAIT-2状态，等待B发出的连接释放报文段。</p>
+
+<p>若B已经没有要向A发送的数据，其应用程序就通知TCP释放连接。这时B发出的连接释放报文段必须使用FIN=1。现假定B的序号为w。B还必须重复上一次已发送过的确认号ack = u + 1。这时B就进入LAST-ACK状态，等待A的确认。</p>
+
+<p>A收到B的连接释放报文段后，发出确认。在确认报文段中把ACK置为1，确认号ack = w + 1，而自己的序号seq = u + 1。然后进入TIME-WAIT状态。目前TCP连接仍未释放，必须经过时间等待计时器(TIME-WAIT timer)设置的时间2MSL后，A才进入到CLOSE状态。MSL叫做最长报文段寿命(Maximum Segment Lifetime)。</p>
+
+<p>A在TIME-WAIT状态下等待2MSL的时间的意义：</p>
+
+<ol>
+<li>为了保证A发送的最后一个ACK报文段能够到达B。B在LAST-ACK状态收不到对已发送的FIN + ACK报文段的确认，便会超时重传。接着A再重传，重新启动2MSL计时器。</li>
+<li>为了防止&rdquo;已失效的连接请求报文&rdquo;出现。A在发送完最后一个ACK报文段后，再经过2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失，使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
+</ol>
+
+<p>除了等待计时器，TCP还有一个<strong>保活计时器(keepalive timer)</strong>。服务器每收到一次客户的数据，就重新设置该计时器。若10个探测报文段后仍无相应，就关闭连接。</p>
+
+<h5 id="tcp的有限状态机">TCP的有限状态机</h5>
+
+<p>粗实线表示对客户进程的正常变迁。粗虚线箭头表示对服务器进程的正常变迁。另一种细线箭头表示异常变迁。</p>
+
+<p><img src="http://blog.zhaoziwen.com.cn/images/tcp_17.png" alt="" /></p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/tcp"><span class="tag">TCP</span></a></li>
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="tag">计算机网络</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/tcp/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

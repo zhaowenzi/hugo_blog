@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>计算机网络 on z2w_mose</title>
-    <link>http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
-    <description>Recent content in 计算机网络 on z2w_mose</description>
+    <title>Tcp on z2w_mose</title>
+    <link>http://blog.zhaoziwen.com.cn/tags/tcp/</link>
+    <description>Recent content in Tcp on z2w_mose</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Tue, 02 Apr 2019 01:08:31 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.zhaoziwen.com.cn/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -35,20 +35,6 @@ TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如�
  确认号。是期望收到对方下一个报文段的第一个数据字节的序号。若确认号 = N，则表明：到序号N - 1为止的所有数据都已正确收到。
  数据偏移。指的是TCP报文段的数据起始处距离TCP报文段的起始处有多远。实际上是指TCP报文段的首部长度。&amp;rdquo;数据偏移&amp;rdquo;的单位是32位字(即4字节)。由于4位二进制数能表示的最大十进制数字是15，因此数据偏移最大值是50字节。也是TCP首部的最大长度。
  保留。保留为今后使用，目前应置为0。后跟6个控制位。</description>
-    </item>
-    
-    <item>
-      <title>用户数据报协议UDP详解</title>
-      <link>http://blog.zhaoziwen.com.cn/post/udp/</link>
-      <pubDate>Wed, 20 Mar 2019 01:38:21 +0800</pubDate>
-      
-      <guid>http://blog.zhaoziwen.com.cn/post/udp/</guid>
-      <description> 概述 UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点
- 无连接。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。 尽最大努力交付，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。 面向报文。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。 没有拥塞控制。意味着网络出现的拥塞不会使主机发送频率降低。 UDP支持一对一、一对多、多对一和多对多的交互通信。 UPD首部开销小。只有8个字节，TCP首部20字节。  UDP的首部格式 UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：
- 源端口。在需要对方回信时使用。不需要可用全0。 目的端口。在终点交付报文是必须使用。 长度。UDP用户数据报的长度，最小值为8（首部）。 检验和。检测UDP用户数据报在传输中是否有错。有错即丢弃。  当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。
-UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）
-计算检验和步骤：
- 把伪首部添加到UDP上； 计算初始是需要将检验和字段添零； 把所有位划分为16位（2字节）的字 把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上 将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和  </description>
     </item>
     
   </channel>
