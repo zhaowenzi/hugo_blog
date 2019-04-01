@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Word Search 之 DFS</title>
+  <title>Best Time to Buy and Sell Stock with Cooldown</title>
 
   
   
@@ -24,46 +24,28 @@
 
   
   <meta name="author" content="z2w">
-  <meta name="description" content="[LeetCode] 79. Word Search
-Given a 2D board and a word, find if the word exists in the grid.
-The word can be constructed from letters of sequentially adjacent cell, where &amp;ldquo;adjacent&amp;rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
-Example:
-board =
-[
-​ [&amp;lsquo;A&amp;rsquo;, &amp;lsquo;B&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]
-​ [&amp;rsquo;S&amp;rsquo;, &amp;lsquo;F&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;rsquo;S&amp;rsquo;]
-​ [&amp;lsquo;A&amp;rsquo;, &amp;rsquo;D&amp;rsquo;, &amp;lsquo;E&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]">
+  <meta name="description" content="[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+ You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@gohugoio">
-    <meta name="twitter:title" content="Word Search 之 DFS">
-    <meta name="twitter:description" content="[LeetCode] 79. Word Search
-Given a 2D board and a word, find if the word exists in the grid.
-The word can be constructed from letters of sequentially adjacent cell, where &amp;ldquo;adjacent&amp;rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
-Example:
-board =
-[
-​ [&amp;lsquo;A&amp;rsquo;, &amp;lsquo;B&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]
-​ [&amp;rsquo;S&amp;rsquo;, &amp;lsquo;F&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;rsquo;S&amp;rsquo;]
-​ [&amp;lsquo;A&amp;rsquo;, &amp;rsquo;D&amp;rsquo;, &amp;lsquo;E&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]">
+    <meta name="twitter:title" content="Best Time to Buy and Sell Stock with Cooldown">
+    <meta name="twitter:description" content="[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+ You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).">
     <meta name="twitter:image" content="/images/avatar.png">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Word Search 之 DFS">
-  <meta property="og:description" content="[LeetCode] 79. Word Search
-Given a 2D board and a word, find if the word exists in the grid.
-The word can be constructed from letters of sequentially adjacent cell, where &amp;ldquo;adjacent&amp;rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
-Example:
-board =
-[
-​ [&amp;lsquo;A&amp;rsquo;, &amp;lsquo;B&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]
-​ [&amp;rsquo;S&amp;rsquo;, &amp;lsquo;F&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;rsquo;S&amp;rsquo;]
-​ [&amp;lsquo;A&amp;rsquo;, &amp;rsquo;D&amp;rsquo;, &amp;lsquo;E&amp;rsquo;, &amp;lsquo;E&amp;rsquo;]">
-  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/word_search/">
+  <meta property="og:title" content="Best Time to Buy and Sell Stock with Cooldown">
+  <meta property="og:description" content="[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+ You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -72,7 +54,7 @@ board =
 <meta name="generator" content="Hugo 0.52">
 
 
-<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/word_search/">
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -214,66 +196,77 @@ board =
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">Word Search 之 DFS</h1>
-      <p class="post-meta">@z2w · Mar 20, 2019 · 2 min read</p>
+      <h1 class="post-title">Best Time to Buy and Sell Stock with Cooldown</h1>
+      <p class="post-meta">@z2w · Apr 1, 2019 · 1 min read</p>
     </header>
     <article class="post-content"><blockquote>
-<p>[LeetCode] 79. Word Search</p>
+<p>[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.</p>
 
-<p>Given a 2D board and a word, find if the word exists in the grid.</p>
+<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:</p>
 
-<p>The word can be constructed from letters of sequentially adjacent cell, where &ldquo;adjacent&rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
+<ul>
+<li>You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).</li>
+<li>After you sell your stock, you cannot buy stock on next day. (ie, cool down 1 day)</li>
+</ul>
 
 <p>Example:</p>
 
-<p>board =</p>
+<p>Input: [1,2,3,0,2]</p>
 
-<p>[</p>
+<p>Output: 3</p>
 
-<p>​ [&lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;C&rsquo;, &lsquo;E&rsquo;]</p>
-
-<p>​ [&rsquo;S&rsquo;, &lsquo;F&rsquo;, &lsquo;C&rsquo;, &rsquo;S&rsquo;]</p>
-
-<p>​ [&lsquo;A&rsquo;, &rsquo;D&rsquo;, &lsquo;E&rsquo;, &lsquo;E&rsquo;]</p>
-
-<p>]</p>
-
-<p>Given word = &ldquo;ABCCED&rdquo;, return true.</p>
-
-<p>Given word = &ldquo;SEE&rdquo;, return true.</p>
-
-<p>Given word = &ldquo;ABCB&rdquo;, return false.</p>
+<p>Explanation: transactions = [buy, sell, cooldown, buy, sell]</p>
 </blockquote>
 
-<p>这题不算难，但是没有想到深度优先遍历DFS，所以有点无从下手。</p>
+<p>这里的动态规划问题跟之前的稍有不同。</p>
 
-<p>具体看代码：</p>
+<p>当前买卖股票的行为会受到之前日期买卖股票行为的影响。对一天的状态有：买入bug，卖出sell，冷却cooldown。</p>
+
+<p>但是对于这一天是否持股只有两种状态：持股状态buy，没有持股状态sell, cooldown。</p>
+
+<p>对于当天持股状态时，至当天为止的最大利润有两种可能：</p>
+
+<ol>
+<li><p>今天没有买入，跟昨天持股状态一样</p></li>
+
+<li><p>今天买入，昨天是冷却期，利润是前天卖出股票时得到的利润减去今天股票的价钱。</p></li>
+</ol>
+
+<p>二者取最大值。</p>
+
+<p>对于当天未持股状态，至当天为止的最大利润也有两种情况：</p>
+
+<ol>
+<li><p>今天没有卖出，跟昨天未持股状态一样</p></li>
+
+<li><p>昨天持有股票，今天卖出了，例如是昨天持有股票时候的利润加上今天股票的价钱</p></li>
+</ol>
+
+<p>二者取最大值</p>
+
+<p>直至最后一天的状态应该是卖出状态。最终利润是sell[n-1]。</p>
+
+<p>状态转移方程：
+$$
+sell[i] = max(sell[i-1], buy[i-1]+price[i]);
+$$
+$$
+buy[i] = max(buy[i-1], sell[i-1]-price[i]);
+$$</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Solution</span> {
 <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">bool</span> exist(vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;&gt;&amp;</span> board, string word) {
-        <span style="color:#66d9ef">if</span> (board.empty() <span style="color:#f92672">||</span> board[<span style="color:#ae81ff">0</span>].empty()) <span style="color:#66d9ef">return</span> false;
-        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> board.size(), n <span style="color:#f92672">=</span> board[<span style="color:#ae81ff">0</span>].size();
-        vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;&gt;</span> visited(m, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span>(n, false));
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; <span style="color:#f92672">++</span>i) {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">++</span>j) {
-                <span style="color:#66d9ef">if</span> (search(board, word, <span style="color:#ae81ff">0</span>, i, j, visited)) <span style="color:#66d9ef">return</span> true;
-            }
-        }
-        <span style="color:#66d9ef">return</span> false;
+  <span style="color:#66d9ef">int</span> maxProfit(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> prices) {
+    <span style="color:#66d9ef">if</span>(prices.size() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">int</span> pre_bug <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, pre_sell <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, buy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>prices[<span style="color:#ae81ff">0</span>], sell <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> price:prices) {
+      pre_buy <span style="color:#f92672">=</span> buy;
+      buy <span style="color:#f92672">=</span> max(pre_buy, pre_sell<span style="color:#f92672">-</span>price); <span style="color:#75715e">// 此处的buy已经指到下一个，pre_buy更新为之前的buy，现在的buy的前一个，但是pre_sell没有更新，为现在的buy的前一个的前一个
+</span><span style="color:#75715e"></span>      pre_sell <span style="color:#f92672">=</span> sell;
+      sell <span style="color:#f92672">=</span> max(pre_sell, pre_buy<span style="color:#f92672">+</span>price);
     }
-    <span style="color:#66d9ef">bool</span> search(vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;&gt;&amp;</span> board, string word, <span style="color:#66d9ef">int</span> idx, <span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">int</span> j, vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;&gt;&amp;</span> visited) {
-        <span style="color:#66d9ef">if</span> (idx <span style="color:#f92672">==</span> word.size()) <span style="color:#66d9ef">return</span> true;
-        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> board.size(), n <span style="color:#f92672">=</span> board[<span style="color:#ae81ff">0</span>].size();
-        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> i <span style="color:#f92672">&gt;=</span> m <span style="color:#f92672">||</span> j <span style="color:#f92672">&gt;=</span> n <span style="color:#f92672">||</span> visited[i][j] <span style="color:#f92672">||</span> board[i][j] <span style="color:#f92672">!=</span> word[idx]) <span style="color:#66d9ef">return</span> false;
-        visited[i][j] <span style="color:#f92672">=</span> true;
-        <span style="color:#66d9ef">bool</span> res <span style="color:#f92672">=</span> search(board, word, idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, j, visited) 
-                 <span style="color:#f92672">||</span> search(board, word, idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, j, visited)
-                 <span style="color:#f92672">||</span> search(board, word, idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, i, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, visited)
-                 <span style="color:#f92672">||</span> search(board, word, idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, i, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, visited);
-        visited[i][j] <span style="color:#f92672">=</span> false;
-        <span style="color:#66d9ef">return</span> res;
-    }
-};
+    <span style="color:#66d9ef">return</span> sell;
+  }
+}
 </code></pre></div></article>
     <footer class="post-footer">
       
@@ -292,7 +285,7 @@ board =
       <div id="cyReward" role="cylabs" data-use="reward"></div>
       <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
       <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
-      <div id="SOHUCS" sid="/post/word_search/" ></div>
+      <div id="SOHUCS" sid="/post/best_time_to_buy_and_sell_stock_with_cooldown/" ></div>
       <script>
       (function(){
       var appid = 'cyu7pyzqM';

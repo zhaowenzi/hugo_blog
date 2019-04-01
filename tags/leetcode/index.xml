@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 27 Mar 2019 01:07:04 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 22:57:33 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Best Time to Buy and Sell Stock with Cooldown</title>
+      <link>http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/</link>
+      <pubDate>Mon, 01 Apr 2019 22:57:33 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/</guid>
+      <description>[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+ You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).</description>
+    </item>
     
     <item>
       <title>Maximal Square</title>

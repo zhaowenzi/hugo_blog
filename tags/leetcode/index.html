@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.54.0">
+<meta name="generator" content="Hugo 0.52">
 
 
 <link rel="canonical" href="http://blog.zhaoziwen.com.cn/tags/leetcode/">
@@ -189,6 +189,21 @@
     </header>
     
     
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/" class="post-link">Best Time to Buy and Sell Stock with Cooldown</a></h3>
+    <p class="post-meta">@z2w · Apr 1, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+ You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/">Read More →</a>
+  </footer>
+</article>
+
       
         <article class="post-entry">
   <header class="post-header">
@@ -394,31 +409,17 @@ The midian is 2.0
 </article>
 
       
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/string_rotate/" class="post-link">String_rotate</a></h3>
-    <p class="post-meta">@zzw · Mar 10, 2019 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
-利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
-abcdefgh -&gt; efghabcd -&gt; ghefcdab -&gt; hgfedcba
-例如：
- [LeetCode] 190. Reverse Bits
-Reverse bits of a given 32 bits unsigned integer.
-Example :
-Input: 00000010100101000001111010011100
-Output: 00111001011110000010100101000000
- 常规思路：
-classSolution { public: uint32_t res = 0; for (int i = 0; i &lt; 32; i&#43;&#43;) { res |= (((n &gt;&gt; i) &amp; 1) &lt;&lt; (32 - i)); } return res; }  本文思路：
-classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &gt;&gt; 16) | (n &lt;&lt; 16); n = ((n &amp; 0xff00ff00) &gt;&gt; 8) | ((n &amp; 0x00ff00ff) &lt;&lt; 8); n = ((n &amp; 0xf0f0f0f0) &gt;&gt; 4) | ((n &amp; 0x0f0f0f0f) &lt;&lt; 4); n = ((n &amp; 0xcccccccc) &gt;&gt; 2) | ((n &amp; 0x33333333) &lt;&lt; 2); n = ((n &amp; 0xaaaaaaaa) &gt;&gt; 1) | ((n &amp; 0x55555555) &lt;&lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/string_rotate/">Read More →</a>
-  </footer>
-</article>
-
-      
     
+    
+      <footer class="list-footer">
+        <nav class="pagination">
+          <h3 class="offscreen">Pagination</h3>
+          
+          
+            <a class="pagination-next" href="http://blog.zhaoziwen.com.cn/tags/leetcode/page/2/">Older Posts →</a>
+          
+        </nav>
+      </footer>
     
   </section>
   
