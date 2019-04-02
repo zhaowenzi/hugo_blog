@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 02 Apr 2019 01:08:31 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 23:48:10 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Burst Balloons</title>
+      <link>http://blog.zhaoziwen.com.cn/post/burst_balloons/</link>
+      <pubDate>Tue, 02 Apr 2019 23:48:10 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/burst_balloons/</guid>
+      <description>[LeetCode] 312. Burst Balloons
+Given n ballons, indexed from 0 to n-1. Each ballon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst ballon i you will get nums[left] * nums[i] * nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+Find the maximum coins you can collect by bursting the balloons wisely.</description>
+    </item>
     
     <item>
       <title>传输控制协议TCP概述</title>
