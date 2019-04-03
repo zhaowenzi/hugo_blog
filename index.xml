@@ -24,6 +24,20 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Partition Equal Subset Sum</title>
+      <link>http://blog.zhaoziwen.com.cn/post/partition_equal_subset_sum/</link>
+      <pubDate>Thu, 04 Apr 2019 01:05:06 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/partition_equal_subset_sum/</guid>
+      <description>[LeetCode] 416. Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+Note:
+ Each of the array element will not exceed 100. The array size will not exceed 200.  Example1:
+Input: [1, 5, 11, 5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].</description>
+    </item>
+    
+    <item>
       <title>Burst Balloons</title>
       <link>http://blog.zhaoziwen.com.cn/post/burst_balloons/</link>
       <pubDate>Tue, 02 Apr 2019 23:48:10 +0800</pubDate>

@@ -46,7 +46,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.54.0">
+<meta name="generator" content="Hugo 0.52">
 
 
 <link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/">
@@ -188,6 +188,29 @@
     </header>
     
     
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/" class="post-link">Unique Binary Search Trees</a></h3>
+    <p class="post-meta">@z2w · Mar 20, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 96. Given n, how many structurally unique BST’s that store values 1 … n ?
+Example:
+Input: 3
+Output: 5
+Explanation:
+Given n = 3, there are a total of 5 unique BST’s:
+ 思路一递归：
+空树和只有根结点时，也为BST。对于一点i，当其为根结点时，左子树的节点的个数为i-1（1, … , i-1），右子树的个数为n-i（i&#43;1, … , n）。对于一个根来说，唯一二叉树的个数为左子树节点的个数乘以右子树的个数。
+classSolution { public: int numTrees(int n) { if(n&lt;=1) return 1; int sum=0; for(int i=1;i&lt;=n;&#43;&#43;i) sum&#43;=numTrees(i-1)*numTrees(n-i); return sum; } };  思路二动态规划：
+卡特兰数的递推公式：
+$$C_{0} = 1 \ and \ C_{n&#43;1} = \sum_{i=0}^{n}C_{i}C_{n-i} \ for \ n\geq 0.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/">Read More →</a>
+  </footer>
+</article>
+
       
         <article class="post-entry">
   <header class="post-header">
