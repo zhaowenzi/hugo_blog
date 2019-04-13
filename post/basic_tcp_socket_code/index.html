@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>基本TCP套接字编程</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="基础源码(请求日期和时间) 客户端 #include	&amp;#34;unp.h&amp;#34; int main(int argc, char **argv) { int	sockfd, n; char	recvline[MAXLINE &#43; 1]; struct sockaddr_in	servaddr; if (argc != 2) err_quit(&amp;#34;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;#34;); if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) &amp;lt; 0) err_sys(&amp;#34;socket error&amp;#34;); bzero(&amp;amp;servaddr, sizeof(servaddr)); servaddr.sin_family = AF_INET; servaddr.sin_port = htons(13);	/* daytime server */ if (inet_pton(AF_INET, argv[1], &amp;amp;servaddr.sin_addr) &amp;lt;= 0) err_quit(&amp;#34;inet_pton error for %s&amp;#34;, argv[1]); if (connect(sockfd, (SA *) &amp;amp;servaddr, sizeof(servaddr)) &amp;lt; 0) err_sys(&amp;#34;connect error&amp;#34;); while ( (n = read(sockfd, recvline, MAXLINE)) &amp;gt; 0) { recvline[n] = 0;	/* null terminate */ if (fputs(recvline, stdout) == EOF) err_sys(&amp;#34;fputs error&amp;#34;); } if (n &amp;lt; 0) err_sys(&amp;#34;read error&amp;#34;); exit(0); } 服务端 #include	&amp;#34;unp.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="基本TCP套接字编程">
+    <meta name="twitter:description" content="基础源码(请求日期和时间) 客户端 #include	&amp;#34;unp.h&amp;#34; int main(int argc, char **argv) { int	sockfd, n; char	recvline[MAXLINE &#43; 1]; struct sockaddr_in	servaddr; if (argc != 2) err_quit(&amp;#34;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;#34;); if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) &amp;lt; 0) err_sys(&amp;#34;socket error&amp;#34;); bzero(&amp;amp;servaddr, sizeof(servaddr)); servaddr.sin_family = AF_INET; servaddr.sin_port = htons(13);	/* daytime server */ if (inet_pton(AF_INET, argv[1], &amp;amp;servaddr.sin_addr) &amp;lt;= 0) err_quit(&amp;#34;inet_pton error for %s&amp;#34;, argv[1]); if (connect(sockfd, (SA *) &amp;amp;servaddr, sizeof(servaddr)) &amp;lt; 0) err_sys(&amp;#34;connect error&amp;#34;); while ( (n = read(sockfd, recvline, MAXLINE)) &amp;gt; 0) { recvline[n] = 0;	/* null terminate */ if (fputs(recvline, stdout) == EOF) err_sys(&amp;#34;fputs error&amp;#34;); } if (n &amp;lt; 0) err_sys(&amp;#34;read error&amp;#34;); exit(0); } 服务端 #include	&amp;#34;unp.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="基本TCP套接字编程">
+  <meta property="og:description" content="基础源码(请求日期和时间) 客户端 #include	&amp;#34;unp.h&amp;#34; int main(int argc, char **argv) { int	sockfd, n; char	recvline[MAXLINE &#43; 1]; struct sockaddr_in	servaddr; if (argc != 2) err_quit(&amp;#34;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;#34;); if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) &amp;lt; 0) err_sys(&amp;#34;socket error&amp;#34;); bzero(&amp;amp;servaddr, sizeof(servaddr)); servaddr.sin_family = AF_INET; servaddr.sin_port = htons(13);	/* daytime server */ if (inet_pton(AF_INET, argv[1], &amp;amp;servaddr.sin_addr) &amp;lt;= 0) err_quit(&amp;#34;inet_pton error for %s&amp;#34;, argv[1]); if (connect(sockfd, (SA *) &amp;amp;servaddr, sizeof(servaddr)) &amp;lt; 0) err_sys(&amp;#34;connect error&amp;#34;); while ( (n = read(sockfd, recvline, MAXLINE)) &amp;gt; 0) { recvline[n] = 0;	/* null terminate */ if (fputs(recvline, stdout) == EOF) err_sys(&amp;#34;fputs error&amp;#34;); } if (n &amp;lt; 0) err_sys(&amp;#34;read error&amp;#34;); exit(0); } 服务端 #include	&amp;#34;unp.">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/basic_tcp_socket_code/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/basic_tcp_socket_code/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">基本TCP套接字编程</h1>
+      <p class="post-meta">@z2w · Apr 13, 2019 · 3 min read</p>
+    </header>
+    <article class="post-content">
+
+<h4 id="基础源码-请求日期和时间">基础源码(请求日期和时间)</h4>
+
+<h5 id="客户端">客户端</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span>
+<span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv)
+{
+	<span style="color:#66d9ef">int</span>					sockfd, n;
+	<span style="color:#66d9ef">char</span>				recvline[MAXLINE <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+	<span style="color:#66d9ef">struct</span> sockaddr_in	servaddr;
+
+	<span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>)
+		err_quit(<span style="color:#e6db74">&#34;usage: a.out &lt;IPaddress&gt;&#34;</span>);
+
+	<span style="color:#66d9ef">if</span> ( (sockfd <span style="color:#f92672">=</span> socket(AF_INET, SOCK_STREAM, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+		err_sys(<span style="color:#e6db74">&#34;socket error&#34;</span>);
+
+	bzero(<span style="color:#f92672">&amp;</span>servaddr, <span style="color:#66d9ef">sizeof</span>(servaddr));
+	servaddr.sin_family <span style="color:#f92672">=</span> AF_INET;
+	servaddr.sin_port   <span style="color:#f92672">=</span> htons(<span style="color:#ae81ff">13</span>);	<span style="color:#75715e">/* daytime server */</span>
+	<span style="color:#66d9ef">if</span> (inet_pton(AF_INET, argv[<span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>servaddr.sin_addr) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+		err_quit(<span style="color:#e6db74">&#34;inet_pton error for %s&#34;</span>, argv[<span style="color:#ae81ff">1</span>]);
+
+	<span style="color:#66d9ef">if</span> (connect(sockfd, (SA <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>servaddr, <span style="color:#66d9ef">sizeof</span>(servaddr)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+		err_sys(<span style="color:#e6db74">&#34;connect error&#34;</span>);
+
+	<span style="color:#66d9ef">while</span> ( (n <span style="color:#f92672">=</span> read(sockfd, recvline, MAXLINE)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+		recvline[n] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">/* null terminate */</span>
+		<span style="color:#66d9ef">if</span> (fputs(recvline, stdout) <span style="color:#f92672">==</span> EOF)
+			err_sys(<span style="color:#e6db74">&#34;fputs error&#34;</span>);
+	}
+	<span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+		err_sys(<span style="color:#e6db74">&#34;read error&#34;</span>);
+
+	exit(<span style="color:#ae81ff">0</span>);
+}</code></pre></div>
+<h5 id="服务端">服务端</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span>	<span style="color:#75715e">&lt;time.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span>    <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span>
+<span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv)
+{
+	<span style="color:#66d9ef">int</span>					listenfd, connfd;
+	socklen_t			len;
+	<span style="color:#66d9ef">struct</span> sockaddr_in	servaddr, cliaddr;
+	<span style="color:#66d9ef">char</span>				buff[MAXLINE];
+	time_t				ticks;
+
+	listenfd <span style="color:#f92672">=</span> Socket(AF_INET, SOCK_STREAM, <span style="color:#ae81ff">0</span>);
+
+	bzero(<span style="color:#f92672">&amp;</span>servaddr, <span style="color:#66d9ef">sizeof</span>(servaddr));
+	servaddr.sin_family      <span style="color:#f92672">=</span> AF_INET;
+	servaddr.sin_addr.s_addr <span style="color:#f92672">=</span> htonl(INADDR_ANY);
+	servaddr.sin_port        <span style="color:#f92672">=</span> htons(<span style="color:#ae81ff">13</span>);	<span style="color:#75715e">/* daytime server */</span>
+
+	Bind(listenfd, (SA <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>servaddr, <span style="color:#66d9ef">sizeof</span>(servaddr));
+
+	Listen(listenfd, LISTENQ);
+
+
+	<span style="color:#75715e">// 阻塞服务器
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// for ( ; ; ) {
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 	len = sizeof(cliaddr);
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 	connfd = Accept(listenfd, (SA *) &amp;cliaddr, &amp;len);
+</span><span style="color:#75715e"></span>
+
+	<span style="color:#75715e">// 	sleep(5);
+</span><span style="color:#75715e"></span>
+
+
+	<span style="color:#75715e">// 	printf(&#34;connection from %s, port %d\n&#34;,
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 		   Inet_ntop(AF_INET, &amp;cliaddr.sin_addr, buff, sizeof(buff)),
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 		   ntohs(cliaddr.sin_port));
+</span><span style="color:#75715e"></span>
+ <span style="color:#75715e">//        ticks = time(NULL);
+</span><span style="color:#75715e"></span> <span style="color:#75715e">//        snprintf(buff, sizeof(buff), &#34;%.24s\r\n&#34;, ctime(&amp;ticks));
+</span><span style="color:#75715e"></span> <span style="color:#75715e">//        Write(connfd, buff, strlen(buff));
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">// 	Close(connfd);
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// }
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">// 并发服务器
+</span><span style="color:#75715e"></span>
+	pid_t pid;
+	<span style="color:#66d9ef">for</span>(;;) {
+		len <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(cliaddr);
+		connfd <span style="color:#f92672">=</span> Accept(listenfd, (SA <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>cliaddr, <span style="color:#f92672">&amp;</span>len);
+
+		<span style="color:#66d9ef">if</span>((pid <span style="color:#f92672">=</span> Fork()) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+			Close(listenfd);
+			sleep(<span style="color:#ae81ff">5</span>);
+			printf(<span style="color:#e6db74">&#34;connection from %s, port %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
+			   Inet_ntop(AF_INET, <span style="color:#f92672">&amp;</span>cliaddr.sin_addr, buff, <span style="color:#66d9ef">sizeof</span>(buff)),
+			   ntohs(cliaddr.sin_port));
+			ticks <span style="color:#f92672">=</span> time(NULL);
+			snprintf(buff, <span style="color:#66d9ef">sizeof</span>(buff), <span style="color:#e6db74">&#34;%.24s</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>, ctime(<span style="color:#f92672">&amp;</span>ticks));
+			Write(connfd, buff, strlen(buff));
+			Close(connfd);
+			exit(<span style="color:#ae81ff">0</span>);
+		}
+		Close(connfd);
+	}
+}</code></pre></div>
+<h4 id="部分函数解释">部分函数解释</h4>
+
+<h5 id="socket函数">socket函数</h5>
+
+<p>执行网络I/O的进程必须做的第一件事情</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">socket</span>(<span style="color:#66d9ef">int</span> family, <span style="color:#66d9ef">int</span> type, <span style="color:#66d9ef">int</span> protocol);</code></pre></div>
+<p>family常值：</p>
+
+<p>​   IPv4协议：AF_INET</p>
+
+<p>​   IPv6协议：AF_INET6</p>
+
+<p>type常值：</p>
+
+<p>​   字节流套接字：SOCK_STREAM</p>
+
+<p>​   数据报套接字：SOCK_DGRAM</p>
+
+<p>protocol常值：</p>
+
+<p>​   TCP传输协议：IPPROTO_CP</p>
+
+<p>​   UDP传输协议：IPPROTO_UDP</p>
+
+<p>返回值：</p>
+
+<p>​   成功时返回一个小的非负整数值，称为套接字描述符，简称sockfd</p>
+
+<h5 id="connect函数">connect函数</h5>
+
+<p>TCP客户用connect函数来建立与TCP服务器的连接</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">connect</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>servaddr, socklen_t addrlen);</code></pre></div>
+<p>出错返回情况：</p>
+
+<p>1、一定时间内没有收到SYN分节的响应，返回ETIMEDOUT错误</p>
+
+<p>2、若对SYN的响应是RST，表明该服务器主机在指定端口上没有进程在等待与之连接。返回ECONNREFUSED错误</p>
+
+<p>3、客户发出的SYN在中间的某个路由器上引发了一个&rdquo;destination unreachable&rdquo;ICMP错误。若在一段时间内仍未收到响应，则返回EHOSTUNREACH或ENETUNREACH错误</p>
+
+<h5 id="bind函数">bind函数</h5>
+
+<p>把一个本地协议地址赋予一个套接字</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>myaddr, socken_t addrlen);</code></pre></div>
+<p>对于IPv4，同配地址由常值INADDR_ANY来指定，其值一般为0</p>
+
+<p>对于IPv6，因为128位的IPv6地址是存放在一个结构中的。(在C语言中，赋值语句的右边无法表示常值结构)，则可以改写为</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> sockaddr_in6 serv;
+serv.sin6_addr <span style="color:#f92672">=</span> in6addr_any;</code></pre></div>
+<p>系统预先分配in6addr_any变量并将其初始化为常值IN6ADDR_ANY_INIT。头文件<netinet/in.h>中含有in6addr_any的extern声明(0的网络字节序和主机字节序一样，所以没用htonl)</p>
+
+<h5 id="listen函数">listen函数</h5>
+
+<p>listen函数仅由TCP服务器调用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">listen</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">int</span> backlog);</code></pre></div>
+<p>第二个参数规定了内核应该为相应套接字排队的最大连接个数</p>
+
+<p>该函数在socket和bind之后调用，在accept之前调用</p>
+
+<h5 id="accept函数">accept函数</h5>
+
+<p>accept函数由TCP服务器调用，用于从已完成连接队列头返回下一个已完成连接。如果为空，则投入睡眠</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">accept</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>cliaddr, socklen_t <span style="color:#f92672">*</span>addrlen);</code></pre></div>
+<p>它的第一个参数为监听套接字描述符，返回值为已连接套接字描述符</p>
+
+<h5 id="fork和exec函数">fork和exec函数</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>pid_t <span style="color:#a6e22e">fork</span>(<span style="color:#66d9ef">void</span>);</code></pre></div>
+<p>fork函数调用一次，返回两次。在调用进程(父进程)返回一次，返回值为新派生的进程(子进程)的进程ID号。在子进程又返回一次，返回值为0</p>
+
+<h5 id="并发服务器">并发服务器</h5>
+
+<p>典型的并发服务器程序轮廓：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">pid_t pid;
+<span style="color:#66d9ef">int</span> listenfd, connfd;
+listenfd <span style="color:#f92672">=</span> Socket(...);
+Bind(listenfd, ...);
+Listen(listenfd, LISTENQ);
+<span style="color:#66d9ef">for</span>( ; ; ) {
+  connfd <span style="color:#f92672">=</span> Accept(listenfd, ...);
+  <span style="color:#66d9ef">if</span>((pid <span style="color:#f92672">=</span> Fork()) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    Close(listenfd);
+    doit(connfd);
+    Close(connfd);
+    exit(<span style="color:#ae81ff">0</span>);
+  }
+  Close(connfd);
+}</code></pre></div>
+<h5 id="close函数">close函数</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">close</span>(<span style="color:#66d9ef">int</span> sockfd);</code></pre></div>
+<h5 id="getsockname和getpeername函数">getsockname和getpeername函数</h5>
+
+<p>返回与某个套接字关联的本地协议地址(getsockname)或者返回与某个套接字关联的外地协议地址(getpeername)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getsockname</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>localaddr, socklen_t <span style="color:#f92672">*</span>addrlen);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getpeername</span>(<span style="color:#66d9ef">int</span> sockfd, <span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>peeraddr, socklen_t <span style="color:#f92672">*</span>addrlen);</code></pre></div>
+<p>例子：获取套接字的地址族</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sockfd_to_family</span>(<span style="color:#66d9ef">int</span> sockfd) {
+  <span style="color:#66d9ef">struct</span> sockaddr_storage ss;
+  socken_t len;
+  len <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(ss);
+  <span style="color:#66d9ef">if</span>(getsockname(sockfd, (SA <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>ss, <span style="color:#f92672">&amp;</span>len) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+    <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+  <span style="color:#66d9ef">return</span>(ss.ss_family);
+}</code></pre></div></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/tcp"><span class="tag">Tcp</span></a></li>
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="tag">计算机网络</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/basic_tcp_socket_code/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

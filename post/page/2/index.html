@@ -191,6 +191,24 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/udp/" class="post-link">用户数据报协议UDP详解</a></h3>
+    <p class="post-meta">@z2w · Mar 20, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary"> 概述 UDP只在IP数据报服务之上增加了复用、分用以及差错检测的功能。UDP的主要特点
+ 无连接。发送数据之前不需要建立连接，同时意味着减少了开销和发送前的时延。 尽最大努力交付，即不保证可靠交付。意味着主机不需要维持复杂的链接状态表。 面向报文。UDP对应用层下发的报文既不合并也不拆分，只添加首部后交给IP层。 没有拥塞控制。意味着网络出现的拥塞不会使主机发送频率降低。 UDP支持一对一、一对多、多对一和多对多的交互通信。 UPD首部开销小。只有8个字节，TCP首部20字节。  UDP的首部格式 UDP首部只有8个字节，由四个字段组成，每个字段两个字节。各字段意义如下：
+ 源端口。在需要对方回信时使用。不需要可用全0。 目的端口。在终点交付报文是必须使用。 长度。UDP用户数据报的长度，最小值为8（首部）。 检验和。检测UDP用户数据报在传输中是否有错。有错即丢弃。  当运输层从IP层收到UDP数据报时，就根据首部中的目的端口，把UDP数据报通过相应的端口，上交到最后的终点——应用程序。如果接收方UDP发现收到的报文中的目的端口号不正确，就丢弃该报文，并由网际控制报文ICMP发送“端口不可达”差错报文给发送方。虽然UDP需要使用到端口号，但由于UDP的通信是无连接的，因此不需要套接字。
+UDP在计算检验和时，在UDP用户数据报之前增加12个字节的伪首部（并不是真正的首部，既不向下传送也不向上递交，仅仅用于计算检验和）
+计算检验和步骤：
+ 把伪首部添加到UDP上； 计算初始是需要将检验和字段添零； 把所有位划分为16位（2字节）的字 把所有16位的字相加，如果遇到进位，则将高于16位的进位部分的值加到最低位上 将所有字相加得到的结果应该为一个16位的数，将该数取反则可以得到检验和  </p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/udp/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/" class="post-link">Unique Binary Search Trees</a></h3>
     <p class="post-meta">@z2w · Mar 20, 2019 · 1 min read</p>
   </header>

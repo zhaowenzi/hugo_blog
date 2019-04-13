@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/basic_tcp_socket_code/</loc>
+    <lastmod>2019-04-13T19:51:39+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/partition_equal_subset_sum/</loc>
     <lastmod>2019-04-04T01:05:06+08:00</lastmod>
   </url>
@@ -127,7 +132,7 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-04-04T01:05:06+08:00</lastmod>
+    <lastmod>2019-04-13T19:51:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -139,7 +144,7 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/tcp/</loc>
-    <lastmod>2019-04-02T01:08:31+08:00</lastmod>
+    <lastmod>2019-04-13T19:51:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -169,7 +174,7 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2019-04-02T01:08:31+08:00</lastmod>
+    <lastmod>2019-04-13T19:51:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   

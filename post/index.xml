@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 04 Apr 2019 01:05:06 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Apr 2019 19:51:39 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>基本TCP套接字编程</title>
+      <link>http://blog.zhaoziwen.com.cn/post/basic_tcp_socket_code/</link>
+      <pubDate>Sat, 13 Apr 2019 19:51:39 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/basic_tcp_socket_code/</guid>
+      <description>基础源码(请求日期和时间) 客户端 #include	&amp;#34;unp.h&amp;#34; int main(int argc, char **argv) { int	sockfd, n; char	recvline[MAXLINE + 1]; struct sockaddr_in	servaddr; if (argc != 2) err_quit(&amp;#34;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;#34;); if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) &amp;lt; 0) err_sys(&amp;#34;socket error&amp;#34;); bzero(&amp;amp;servaddr, sizeof(servaddr)); servaddr.sin_family = AF_INET; servaddr.sin_port = htons(13);	/* daytime server */ if (inet_pton(AF_INET, argv[1], &amp;amp;servaddr.sin_addr) &amp;lt;= 0) err_quit(&amp;#34;inet_pton error for %s&amp;#34;, argv[1]); if (connect(sockfd, (SA *) &amp;amp;servaddr, sizeof(servaddr)) &amp;lt; 0) err_sys(&amp;#34;connect error&amp;#34;); while ( (n = read(sockfd, recvline, MAXLINE)) &amp;gt; 0) { recvline[n] = 0;	/* null terminate */ if (fputs(recvline, stdout) == EOF) err_sys(&amp;#34;fputs error&amp;#34;); } if (n &amp;lt; 0) err_sys(&amp;#34;read error&amp;#34;); exit(0); } 服务端 #include	&amp;#34;unp.</description>
+    </item>
     
     <item>
       <title>Partition Equal Subset Sum</title>
