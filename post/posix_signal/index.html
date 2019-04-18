@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>POSIX信号</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="在服务器子进程终止时，给父进程发送一个SIGCHLD信号。由于父进程未加处理，子进程进入僵死状态。
+POSIX信号处理 信号就是告知某个进程发生了某个事件的通知，有时也成为软件中断(interrupt)
+信号可以：
+ 由一个进程发送给另一个进程 由内核发送给某个进程  每一个信号都有一个与之关联的处置(disposition)，也称为行为(action)。我们通过调用sigaction函数来设定一个信号的处置，并有三种选择：
+ 提供一个函数，在特定信号发生时就被调用。这样的函数被称为信号处理函数，这种行为称为捕获信号。但是有两个信号不同被捕获，即SIGKILL和SIGSTOP。 可以把某个信号的处置设定为SIG_IGN来忽略它。SIGKILL和SIGSTOP这两个信号不能被忽略。 把某个信号的处置设定为SIG_DFL来启用它的默认处置。  signal函数 简历信号处置的POSIX方法就是调用sigaction函数，简单些的方法就是调用signal函数
+/* include signal */ #include	&amp;#34;unp.h&amp;#34; Sigfunc * signal(int signo, Sigfunc *func) { struct sigaction	act, oact; act.sa_handler = func; sigemptyset(&amp;amp;act.sa_mask); act.sa_flags = 0; if (signo == SIGALRM) { #ifdef	SA_INTERRUPT 	act.sa_flags |= SA_INTERRUPT;	/* SunOS 4.x */ #endif 	} else { #ifdef	SA_RESTART 	act.sa_flags |= SA_RESTART;	/* SVR4, 44BSD */ #endif 	} if (sigaction(signo, &amp;amp;act, &amp;amp;oact) &amp;lt; 0) return(SIG_ERR); return(oact.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="POSIX信号">
+    <meta name="twitter:description" content="在服务器子进程终止时，给父进程发送一个SIGCHLD信号。由于父进程未加处理，子进程进入僵死状态。
+POSIX信号处理 信号就是告知某个进程发生了某个事件的通知，有时也成为软件中断(interrupt)
+信号可以：
+ 由一个进程发送给另一个进程 由内核发送给某个进程  每一个信号都有一个与之关联的处置(disposition)，也称为行为(action)。我们通过调用sigaction函数来设定一个信号的处置，并有三种选择：
+ 提供一个函数，在特定信号发生时就被调用。这样的函数被称为信号处理函数，这种行为称为捕获信号。但是有两个信号不同被捕获，即SIGKILL和SIGSTOP。 可以把某个信号的处置设定为SIG_IGN来忽略它。SIGKILL和SIGSTOP这两个信号不能被忽略。 把某个信号的处置设定为SIG_DFL来启用它的默认处置。  signal函数 简历信号处置的POSIX方法就是调用sigaction函数，简单些的方法就是调用signal函数
+/* include signal */ #include	&amp;#34;unp.h&amp;#34; Sigfunc * signal(int signo, Sigfunc *func) { struct sigaction	act, oact; act.sa_handler = func; sigemptyset(&amp;amp;act.sa_mask); act.sa_flags = 0; if (signo == SIGALRM) { #ifdef	SA_INTERRUPT 	act.sa_flags |= SA_INTERRUPT;	/* SunOS 4.x */ #endif 	} else { #ifdef	SA_RESTART 	act.sa_flags |= SA_RESTART;	/* SVR4, 44BSD */ #endif 	} if (sigaction(signo, &amp;amp;act, &amp;amp;oact) &amp;lt; 0) return(SIG_ERR); return(oact.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="POSIX信号">
+  <meta property="og:description" content="在服务器子进程终止时，给父进程发送一个SIGCHLD信号。由于父进程未加处理，子进程进入僵死状态。
+POSIX信号处理 信号就是告知某个进程发生了某个事件的通知，有时也成为软件中断(interrupt)
+信号可以：
+ 由一个进程发送给另一个进程 由内核发送给某个进程  每一个信号都有一个与之关联的处置(disposition)，也称为行为(action)。我们通过调用sigaction函数来设定一个信号的处置，并有三种选择：
+ 提供一个函数，在特定信号发生时就被调用。这样的函数被称为信号处理函数，这种行为称为捕获信号。但是有两个信号不同被捕获，即SIGKILL和SIGSTOP。 可以把某个信号的处置设定为SIG_IGN来忽略它。SIGKILL和SIGSTOP这两个信号不能被忽略。 把某个信号的处置设定为SIG_DFL来启用它的默认处置。  signal函数 简历信号处置的POSIX方法就是调用sigaction函数，简单些的方法就是调用signal函数
+/* include signal */ #include	&amp;#34;unp.h&amp;#34; Sigfunc * signal(int signo, Sigfunc *func) { struct sigaction	act, oact; act.sa_handler = func; sigemptyset(&amp;amp;act.sa_mask); act.sa_flags = 0; if (signo == SIGALRM) { #ifdef	SA_INTERRUPT 	act.sa_flags |= SA_INTERRUPT;	/* SunOS 4.x */ #endif 	} else { #ifdef	SA_RESTART 	act.sa_flags |= SA_RESTART;	/* SVR4, 44BSD */ #endif 	} if (sigaction(signo, &amp;amp;act, &amp;amp;oact) &amp;lt; 0) return(SIG_ERR); return(oact.">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/posix_signal/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/posix_signal/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">POSIX信号</h1>
+      <p class="post-meta">@z2w · Apr 19, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<p>在服务器子进程终止时，给父进程发送一个SIGCHLD信号。由于父进程未加处理，子进程进入僵死状态。</p>
+
+<h4 id="posix信号处理">POSIX信号处理</h4>
+
+<p>信号就是告知某个进程发生了某个事件的通知，有时也成为软件中断(interrupt)</p>
+
+<p>信号可以：</p>
+
+<ol>
+<li>由一个进程发送给另一个进程</li>
+<li>由内核发送给某个进程</li>
+</ol>
+
+<p>每一个信号都有一个与之关联的处置(disposition)，也称为行为(action)。我们通过调用sigaction函数来设定一个信号的处置，并有三种选择：</p>
+
+<ol>
+<li>提供一个函数，在特定信号发生时就被调用。这样的函数被称为信号处理函数，这种行为称为捕获信号。但是有两个信号不同被捕获，即SIGKILL和SIGSTOP。</li>
+<li>可以把某个信号的处置设定为SIG_IGN来忽略它。SIGKILL和SIGSTOP这两个信号不能被忽略。</li>
+<li>把某个信号的处置设定为SIG_DFL来启用它的默认处置。</li>
+</ol>
+
+<h5 id="signal函数">signal函数</h5>
+
+<p>简历信号处置的POSIX方法就是调用sigaction函数，简单些的方法就是调用signal函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* include signal */</span>
+<span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+Sigfunc <span style="color:#f92672">*</span>
+<span style="color:#a6e22e">signal</span>(<span style="color:#66d9ef">int</span> signo, Sigfunc <span style="color:#f92672">*</span>func)
+{
+	<span style="color:#66d9ef">struct</span> sigaction	act, oact;
+
+	act.sa_handler <span style="color:#f92672">=</span> func;
+	sigemptyset(<span style="color:#f92672">&amp;</span>act.sa_mask);
+	act.sa_flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">if</span> (signo <span style="color:#f92672">==</span> SIGALRM) {
+<span style="color:#75715e">#ifdef	SA_INTERRUPT
+</span><span style="color:#75715e"></span>		act.sa_flags <span style="color:#f92672">|=</span> SA_INTERRUPT;	<span style="color:#75715e">/* SunOS 4.x */</span>
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>	} <span style="color:#66d9ef">else</span> {
+<span style="color:#75715e">#ifdef	SA_RESTART
+</span><span style="color:#75715e"></span>		act.sa_flags <span style="color:#f92672">|=</span> SA_RESTART;		<span style="color:#75715e">/* SVR4, 44BSD */</span>
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>	}
+	<span style="color:#66d9ef">if</span> (sigaction(signo, <span style="color:#f92672">&amp;</span>act, <span style="color:#f92672">&amp;</span>oact) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+		<span style="color:#66d9ef">return</span>(SIG_ERR);
+	<span style="color:#66d9ef">return</span>(oact.sa_handler);
+}
+<span style="color:#75715e">/* end signal */</span>
+
+Sigfunc <span style="color:#f92672">*</span>
+<span style="color:#a6e22e">Signal</span>(<span style="color:#66d9ef">int</span> signo, Sigfunc <span style="color:#f92672">*</span>func)	<span style="color:#75715e">/* for our signal() function */</span>
+{
+	Sigfunc	<span style="color:#f92672">*</span>sigfunc;
+
+	<span style="color:#66d9ef">if</span> ( (sigfunc <span style="color:#f92672">=</span> signal(signo, func)) <span style="color:#f92672">==</span> SIG_ERR)
+		err_sys(<span style="color:#e6db74">&#34;signal error&#34;</span>);
+	<span style="color:#66d9ef">return</span>(sigfunc);
+}</code></pre></div>
+<p>第4-5行：函数signal的正常函数原型因层次太多而变得很复杂</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>signal(<span style="color:#66d9ef">int</span> signo, <span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>func)(<span style="color:#66d9ef">int</span>)))(<span style="color:#66d9ef">int</span>);</code></pre></div>
+<p>为了简化，在unp.h中定义了如下类型：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Sigfunc</span>(<span style="color:#66d9ef">int</span>);</code></pre></div>
+<p>说明信号处理函数是仅有一个整数参数且不返回值的函数。于是signal变为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Sigfunc <span style="color:#f92672">*</span><span style="color:#a6e22e">signal</span>(<span style="color:#66d9ef">int</span> signo, Sigfunc <span style="color:#f92672">*</span>func);</code></pre></div>
+<p>第10行：POSIX允许我们指定一组信号，在信号处理函数被调用时阻塞。任何阻塞的信号都不同递交给进程。把sa_mask成员函数设置为空，以为着在该信号函数运行期间，不阻塞额外信号。POSIX保证被捕获的信号在其信号处理函数运行期间总是阻塞的</p>
+
+<h5 id="posix信号语义">POSIX信号语义</h5>
+
+<ol>
+<li>一旦安装了信号处理函数，它便一直安装着</li>
+<li>在一个信号处理函数运行期间，正被递交的信号是阻塞的。而且，安装处理函数在传递给sigaction函数的sa_mask信号集中指定的额外信号也被阻塞</li>
+<li>如果一个信号在被阻塞期间产生了一次或多次，那些该信号被解阻塞之后通常只递交一次，也就是说Unix信号不排队</li>
+<li>利用sigprocmask函数选择性的阻塞或解阻塞一组信号是可能的</li>
+</ol>
+
+<h4 id="处理sigchld信号">处理SIGCHLD信号</h4>
+
+<h5 id="处理僵死进程">处理僵死进程</h5>
+
+<p>在之前的代码中的listen调用之后增加如下函数调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">......
+  Listen(listenfd, LISTENQ);
+
+	Signal(SIGCHLD, sig_chld);
+
+	<span style="color:#66d9ef">for</span> ( ; ; ) {
+......</code></pre></div>
+<p>接着定义sig_chld这个信号处理函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span>
+<span style="color:#a6e22e">sig_chld</span>(<span style="color:#66d9ef">int</span> signo)
+{
+	pid_t	pid;
+	<span style="color:#66d9ef">int</span>		stat;
+
+	pid <span style="color:#f92672">=</span> wait(<span style="color:#f92672">&amp;</span>stat);
+	printf(<span style="color:#e6db74">&#34;child %d terminated</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, pid);
+	<span style="color:#66d9ef">return</span>;
+}</code></pre></div>
+<h5 id="处理被中断的系统调用">处理被中断的系统调用</h5>
+
+<p>当阻塞于某个慢系统调用的一个进程捕获某个信号且相应信号处理函数返回时，该系统调用可能返回一个EINTR错误。有些内核自动重启某些被中断的系统调用，为了移植方便，我们的捕获信号的程序需对返回的EINTR有所准备。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">for</span>( ; ; ) {
+  clilen <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(cliaddr);
+  <span style="color:#66d9ef">if</span>((connfd <span style="color:#f92672">=</span> accept(listnfd, (SA <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>cliaddr, <span style="color:#f92672">&amp;</span>clilen)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">if</span>(errno <span style="color:#f92672">==</span> EINTR)
+      <span style="color:#66d9ef">continue</span>;
+    <span style="color:#66d9ef">else</span>
+      <span style="color:#a6e22e">err_sys</span>(<span style="color:#e6db74">&#34;accept error&#34;</span>);
+  }
+}</code></pre></div>
+<h4 id="wait和waitpid函数">wait和waitpid函数</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/wait.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>pid_t <span style="color:#a6e22e">wait</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>statloc);
+pid_t <span style="color:#a6e22e">wait</span>(pid_t pid, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>statloc, <span style="color:#66d9ef">int</span> options);</code></pre></div>
+<p>如果调用wait的进程没有已终止的子进程，不过有一个或多个子进程仍在执行，那么wait将阻塞到现有子进程第一个终止为止。</p>
+
+<p>waitpid给了更多控制，pid参数允许我们指定想等待的进程ID，-1表示等待第一个终止的子进程。options参数的WNOHANG告知内核在没有已终止子进程时不要阻塞。</p>
+
+<p>同时建立一个信号处理函数并在其中调用wait并不足以防止出现僵死进程：例如客户同时与服务器产生了5个连接，并在同一时刻退出，5个信号都在信号处理函数执行之前产生，而信号处理函数只执行一次，因为Unix信号一般不排队。并且，信号处理函数处理几次并不一定。</p>
+
+<p>waitpid可以解决这个问题。可以防止wait在正运行的子进程尚有未终止时阻塞。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span>
+<span style="color:#a6e22e">sig_chld</span>(<span style="color:#66d9ef">int</span> signo)
+{
+	pid_t	pid;
+	<span style="color:#66d9ef">int</span>		stat;
+
+	<span style="color:#66d9ef">while</span> ( (pid <span style="color:#f92672">=</span> waitpid(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>stat, WNOHANG)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+		printf(<span style="color:#e6db74">&#34;child %d terminated</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, pid);
+	<span style="color:#66d9ef">return</span>;
+}</code></pre></div>
+<p>即本节的目的：</p>
+
+<ol>
+<li>当fork子进程时，必须捕获SIGCHLD信号</li>
+<li>当捕获信号时，必须处理被中断的系统调用</li>
+<li>SIGCHLD的信号处理函数必须正确编写，使用waitpid函数以免留下僵死进程</li>
+</ol>
+
+<h4 id="sigpipe信号">SIGPIPE信号</h4>
+
+<p>当一个进程向某个已收到RST的套接字执行写操作时，内核向该进程发送一个SIGPIPE信号，该信号的默认行为是终止进程，因为进程必须捕获它以免不情愿被终止。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span>	<span style="color:#75715e">&#34;unp.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span>
+<span style="color:#a6e22e">str_cli</span>(FILE <span style="color:#f92672">*</span>fp, <span style="color:#66d9ef">int</span> sockfd)
+{
+	<span style="color:#66d9ef">char</span>	sendline[MAXLINE], recvline[MAXLINE];
+
+	<span style="color:#66d9ef">while</span> (Fgets(sendline, MAXLINE, fp) <span style="color:#f92672">!=</span> NULL) {
+
+		Writen(sockfd, sendline, <span style="color:#ae81ff">1</span>);
+		sleep(<span style="color:#ae81ff">1</span>);
+		Writen(sockfd, sendline<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, strlen(sendline)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+
+		<span style="color:#66d9ef">if</span> (Readline(sockfd, recvline, MAXLINE) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+			err_quit(<span style="color:#e6db74">&#34;str_cli: server terminated prematurely&#34;</span>);
+
+		Fputs(recvline, stdout);
+	}
+}</code></pre></div>
+<p>第一次把文本行数据的第一个字节写入套接字，暂停1s后，第二次把同一文本行中剩余字节写入套接字，目的是让第一次writen引发一个RST，第二个writen产生SIGPIPE</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="tag">计算机网络</span></a></li>
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="tag">UNIX网络编程</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/posix_signal/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -186,6 +186,22 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/posix_signal/" class="post-link">POSIX信号</a></h3>
+    <p class="post-meta">@z2w · Apr 19, 2019 · 2 min read</p>
+  </header>
+  
+  <p class="post-summary">在服务器子进程终止时，给父进程发送一个SIGCHLD信号。由于父进程未加处理，子进程进入僵死状态。
+POSIX信号处理 信号就是告知某个进程发生了某个事件的通知，有时也成为软件中断(interrupt)
+信号可以：
+ 由一个进程发送给另一个进程 由内核发送给某个进程  每一个信号都有一个与之关联的处置(disposition)，也称为行为(action)。我们通过调用sigaction函数来设定一个信号的处置，并有三种选择：
+ 提供一个函数，在特定信号发生时就被调用。这样的函数被称为信号处理函数，这种行为称为捕获信号。但是有两个信号不同被捕获，即SIGKILL和SIGSTOP。 可以把某个信号的处置设定为SIG_IGN来忽略它。SIGKILL和SIGSTOP这两个信号不能被忽略。 把某个信号的处置设定为SIG_DFL来启用它的默认处置。  signal函数 简历信号处置的POSIX方法就是调用sigaction函数，简单些的方法就是调用signal函数
+/* include signal */ #include	&#34;unp.h&#34; Sigfunc * signal(int signo, Sigfunc *func) { struct sigaction	act, oact; act.sa_handler = func; sigemptyset(&amp;act.sa_mask); act.sa_flags = 0; if (signo == SIGALRM) { #ifdef	SA_INTERRUPT 	act.sa_flags |= SA_INTERRUPT;	/* SunOS 4.x */ #endif 	} else { #ifdef	SA_RESTART 	act.sa_flags |= SA_RESTART;	/* SVR4, 44BSD */ #endif 	} if (sigaction(signo, &amp;act, &amp;oact) &lt; 0) return(SIG_ERR); return(oact.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/posix_signal/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/lowest_common_ancestor_of_a_binary_tree/" class="post-link">Lowest Common Ancestor of a Binary Tree</a></h3>
     <p class="post-meta">@z2w · Apr 16, 2019 · 2 min read</p>
   </header>
@@ -330,22 +346,6 @@ Example 1:
 Input: 2, [[1,0]] Output: true Explanation: There are a total of 2 courses to take.</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/course_schedule/">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/" class="post-link">Ubuntu初始化配置流程</a></h3>
-    <p class="post-meta">@z2w · Mar 25, 2019 · 3 min read</p>
-  </header>
-  
-  <p class="post-summary">以下记录一下Ubuntu的配置流程，持续更新
- 环境：ubuntu 16.04.6 Desktop
- 一、更新apt源 1、源文件备份
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 2、编辑源列表文件
-sudo vim /etc/apt/sources.list 3、将原来的列表删除，添加如下内容
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse # deb-src https://mirrors.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/">Read More →</a>
   </footer>
 </article>
  
