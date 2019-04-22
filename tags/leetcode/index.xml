@@ -7,10 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 16 Apr 2019 00:27:43 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 22 Apr 2019 23:32:59 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Multiply Strings</title>
+      <link>http://blog.zhaoziwen.com.cn/post/multiply_strings/</link>
+      <pubDate>Mon, 22 Apr 2019 23:32:59 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/multiply_strings/</guid>
+      <description>[LeetCode] 43. Multiply Strings
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+Example 1:
+Input: num1 = &amp;ldquo;2&amp;rdquo;, num2 = &amp;ldquo;3&amp;rdquo;
+Output: &amp;ldquo;6&amp;rdquo;
+Example 2:
+Input: num1 = &amp;ldquo;123&amp;rdquo;, num2 = &amp;ldquo;456&amp;rdquo;
+Output: &amp;ldquo;56088&amp;rdquo;
+ 这题看似简单，但是就是写不出来…
+两数相乘的乘积的长度正好是两个数字的长度之和
+classSolution { public: string multiply(string num1, string num2) { string res = &amp;#34;&amp;#34;; int m = num1.size(), n = num2.</description>
+    </item>
     
     <item>
       <title>Lowest Common Ancestor of a Binary Tree</title>

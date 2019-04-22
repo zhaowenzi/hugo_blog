@@ -186,6 +186,22 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/course_schedule/" class="post-link">Course Schedule</a></h3>
+    <p class="post-meta">@z2w · Mar 26, 2019 · 2 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 207. Course Schedule
+There are a total of n courses you have to take, labeled from 0 to n-1.
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+Given the total number of courses and a list of prequisite pairs, is it possible for you to finish all courses?
+Example 1:
+Input: 2, [[1,0]] Output: true Explanation: There are a total of 2 courses to take.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/course_schedule/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/" class="post-link">Ubuntu初始化配置流程</a></h3>
     <p class="post-meta">@z2w · Mar 25, 2019 · 3 min read</p>
   </header>
@@ -360,28 +376,6 @@ The midian is 2.0
  classSolution { public: double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) { int m = nums1.</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/median_of_two_sorted_arrays/">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/string_rotate/" class="post-link">String_rotate</a></h3>
-    <p class="post-meta">@zzw · Mar 10, 2019 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">字符串翻转与旋转 翻转 除了常规思路的左右位置对调，至此提供一种新的思路，用以解决其他特定环境下的相关问题。
-利用迭代的思路对需要处理的字符串两边整体对换直到只有一位，如对于一个8位数字abcdefgh来讲，处理过程如下：
-abcdefgh -&gt; efghabcd -&gt; ghefcdab -&gt; hgfedcba
-例如：
- [LeetCode] 190. Reverse Bits
-Reverse bits of a given 32 bits unsigned integer.
-Example :
-Input: 00000010100101000001111010011100
-Output: 00111001011110000010100101000000
- 常规思路：
-classSolution { public: uint32_t res = 0; for (int i = 0; i &lt; 32; i&#43;&#43;) { res |= (((n &gt;&gt; i) &amp; 1) &lt;&lt; (32 - i)); } return res; }  本文思路：
-classSolution { public: uint32_t reverseBits(uint32_t n) { n = (n &gt;&gt; 16) | (n &lt;&lt; 16); n = ((n &amp; 0xff00ff00) &gt;&gt; 8) | ((n &amp; 0x00ff00ff) &lt;&lt; 8); n = ((n &amp; 0xf0f0f0f0) &gt;&gt; 4) | ((n &amp; 0x0f0f0f0f) &lt;&lt; 4); n = ((n &amp; 0xcccccccc) &gt;&gt; 2) | ((n &amp; 0x33333333) &lt;&lt; 2); n = ((n &amp; 0xaaaaaaaa) &gt;&gt; 1) | ((n &amp; 0x55555555) &lt;&lt; 1); return n; } };  旋转 类似翻转字符串的方法，思路是先把前n-k个字符翻转一下，再把后k个字符翻转一下，最后再把整个数组翻转一下</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/string_rotate/">Read More →</a>
   </footer>
 </article>
  
