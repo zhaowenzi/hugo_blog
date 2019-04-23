@@ -191,6 +191,30 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/" class="post-link">Sum of Two Integers</a></h3>
+    <p class="post-meta">@z2w · Apr 23, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp; b)&amp;(0x7FFFFFFF) &lt;&lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/multiply_strings/" class="post-link">Multiply Strings</a></h3>
     <p class="post-meta">@z2w · Apr 22, 2019 · 1 min read</p>
   </header>
@@ -348,32 +372,6 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 class TrieNode { char content; // the character in the node  boolean isEnd; // whether the end of the words  int count; //the number of words sharing this character  LinkedList&lt;TrieNode&gt; childList; // the child list  public TrieNode(char c) { childList = new LinkedList&lt;TrieNode&gt;(); isEnd = false; content = c; count = 0; } public TrieNode subNode(char c) { if(childList !</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/trie_tree/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/maximal_square/" class="post-link">Maximal Square</a></h3>
-    <p class="post-meta">@z2w · Mar 27, 2019 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 221. Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.
-Example:
-Input:
-1 0 1 0 0
-1 0 1 1 1
-1 1 1 1 1
-1 0 0 1 0
-Output: 4
- 这又是一道典型的DP题目，但是我依然没有任何思路。
-解决办法：
-首先考虑第一行和第一列，如果为’1’，则该位置上的DP数组为1，否则为0。
-然后再考虑中间，以中间某个点为右下角的最大的正方形即为上方、左方和左上方为右下角的最大正方形中的最小值加一。
-即动态规划递推式为： $$ dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) &#43; 1 $$
-classSolution { public: int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) { if (matrix.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/maximal_square/">Read More →</a>
   </footer>
 </article>
 

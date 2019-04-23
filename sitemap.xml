@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/</loc>
+    <lastmod>2019-04-23T23:30:37+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhaoziwen.com.cn/post/multiply_strings/</loc>
     <lastmod>2019-04-22T23:32:59+08:00</lastmod>
   </url>
@@ -141,13 +146,19 @@
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/tags/leetcode/</loc>
-    <lastmod>2019-04-22T23:32:59+08:00</lastmod>
+    <lastmod>2019-04-23T23:30:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.zhaoziwen.com.cn/post/</loc>
-    <lastmod>2019-04-22T23:32:59+08:00</lastmod>
+    <lastmod>2019-04-23T23:30:37+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhaoziwen.com.cn/tags/tagb/</loc>
+    <lastmod>2019-04-23T23:30:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   

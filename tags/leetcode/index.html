@@ -192,6 +192,30 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/" class="post-link">Sum of Two Integers</a></h3>
+    <p class="post-meta">@z2w · Apr 23, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp; b)&amp;(0x7FFFFFFF) &lt;&lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/multiply_strings/" class="post-link">Multiply Strings</a></h3>
     <p class="post-meta">@z2w · Apr 22, 2019 · 1 min read</p>
   </header>
@@ -358,27 +382,6 @@ classSolution { public: int numTrees(int n) { if(n&lt;=1) return 1; int sum=0; f
 $$C_{0} = 1 \ and \ C_{n&#43;1} = \sum_{i=0}^{n}C_{i}C_{n-i} \ for \ n\geq 0.</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/word_search/" class="post-link">Word Search 之 DFS</a></h3>
-    <p class="post-meta">@z2w · Mar 20, 2019 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 79. Word Search
-Given a 2D board and a word, find if the word exists in the grid.
-The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
-Example:
-board =
-[
-​ [‘A’, ‘B’, ‘C’, ‘E’]
-​ [’S’, ‘F’, ‘C’, ’S’]
-​ [‘A’, ’D’, ‘E’, ‘E’]</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/word_search/">Read More →</a>
   </footer>
 </article>
 

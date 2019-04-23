@@ -6,7 +6,9 @@
 
   
   <title>
-  Tags | zzw blog
+  Tag → tagb
+  
+   | zzw blog
 </title>
 
   
@@ -39,7 +41,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="zzw blog">
   <meta property="og:description" content="This is zzw&#39;s personal blog.">
-  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/tags/">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/tags/tagb/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -48,8 +50,8 @@
 <meta name="generator" content="Hugo 0.52">
 
 
-<link rel="canonical" href="http://blog.zhaoziwen.com.cn/tags/">
-<link rel="alternate" type="application/rss+xml" href="http://blog.zhaoziwen.com.cn/tags/index.xml" title="z2w_mose">
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/tags/tagb/">
+<link rel="alternate" type="application/rss+xml" href="http://blog.zhaoziwen.com.cn/tags/tagb/index.xml" title="z2w_mose">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -152,8 +154,8 @@
         </li>
       
         <li class="menu-item
-           is-active
           
+           is-active
           ">
           <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
         </li>
@@ -181,44 +183,39 @@
   </nav>
 </header>
 
-  <section class="main post-detail terms-list">
-    <header class="post-header">
-      <h1 class="post-title">Tags</h1>
+  <section class="main post-list">
+    <header class="list-header offscreen">
+      <h2 class="list-label">Posts List</h2>
     </header>
-    <div class="tags-cloud">
+    
+    
       
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/" class="post-link">Sum of Two Integers</a></h3>
+    <p class="post-meta">@z2w · Apr 23, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp; b)&amp;(0x7FFFFFFF) &lt;&lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/">Read More →</a>
+  </footer>
+</article>
+
       
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/leetcode/" class="tag-xxl">leetcode</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="tag-l">计算机网络</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/tcp/" class="tag-m">tcp</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="tag-m">unix网络编程</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/blog/" class="tag-s">blog</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/hugo/" class="tag-s">hugo</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/tagb/" class="tag-s">tagb</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/ubuntu/" class="tag-s">ubuntu</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/udp/" class="tag-s">udp</a>
-      
-        
-        <a href="http://blog.zhaoziwen.com.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="tag-s">数据结构</a>
-      
-    </div>
+    
+    
   </section>
   
 <footer class="site-footer">

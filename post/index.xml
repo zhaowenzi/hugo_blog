@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 22 Apr 2019 23:32:59 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 23:30:37 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sum of Two Integers</title>
+      <link>http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/</link>
+      <pubDate>Tue, 23 Apr 2019 23:30:37 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/</guid>
+      <description>[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5+17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5+7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp;amp; b)&amp;amp;(0x7FFFFFFF) &amp;lt;&amp;lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)</description>
+    </item>
     
     <item>
       <title>Multiply Strings</title>

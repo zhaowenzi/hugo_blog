@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Sum of Two Integers</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="z2w">
+  <meta name="description" content="[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp;amp; b)&amp;amp;(0x7FFFFFFF) &amp;lt;&amp;lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Sum of Two Integers">
+    <meta name="twitter:description" content="[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp;amp; b)&amp;amp;(0x7FFFFFFF) &amp;lt;&amp;lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sum of Two Integers">
+  <meta property="og:description" content="[LeetCode] 371. Sum of Two Integers
+Calculate the sum of two integers a and b, but you are not allowed to use the operator &#43; and -.
+Example 1:
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+Input: a = -2, b = 3
+Output: 1
+ 在十进制中，对于5&#43;17=22这个结果，我们可以分为三步：
+ 只做各位相加不进位，此时相加的结果是12 只做进位，5&#43;7中有进位，进位是10 把前面两个结果加起来，结果正好等于22  在二进制中同理，5的二进制是101，17的二进制是10001
+ 各位相加但不进位，得到的结果是10100 记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10 把前两部的结果相加，结果是10110，正好是22  把二进制上的加法用位运算来替代
+int getSum(int a, int b) { if(b == 0) { return a; } int num1 = a ^ b; int num2 = (a &amp;amp; b)&amp;amp;(0x7FFFFFFF) &amp;lt;&amp;lt; 1; return getSum(num1, num2); }  注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)">
+  <meta property="og:url" content="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.52">
+
+
+<link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="z2w_mose">
+<meta name="msapplication-tooltip" content="z2w_mose">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="http://blog.zhaoziwen.com.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://blog.zhaoziwen.com.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://blog.zhaoziwen.com.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="http://blog.zhaoziwen.com.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="http://blog.zhaoziwen.com.cn/icons/icon-152x152.png">
+<link rel="manifest" href="http://blog.zhaoziwen.com.cn/manifest.json">
+
+
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/styles/main.min.css" as="style">
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/avatar.png" as="image">
+<link rel="preload" href="http://blog.zhaoziwen.com.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="http://blog.zhaoziwen.com.cn/styles/main.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://blog.zhaoziwen.com.cn/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">z2w_mose</h2>
+  
+  <p class="subtitle">Work Harder</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="http://blog.zhaoziwen.com.cn/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="http://blog.zhaoziwen.com.cn/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:me@zhaoziwen.com.cn" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhaowenzi" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Sum of Two Integers</h1>
+      <p class="post-meta">@z2w · Apr 23, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><blockquote>
+<p>[LeetCode] 371. Sum of Two Integers</p>
+
+<p>Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.</p>
+
+<p>Example 1:</p>
+
+<p>Input: a = 1, b = 2</p>
+
+<p>Output: 3</p>
+
+<p>Example 2:</p>
+
+<p>Input: a = -2, b = 3</p>
+
+<p>Output: 1</p>
+</blockquote>
+
+<p>在十进制中，对于5+17=22这个结果，我们可以分为三步：</p>
+
+<ol>
+<li>只做各位相加不进位，此时相加的结果是12</li>
+<li>只做进位，5+7中有进位，进位是10</li>
+<li>把前面两个结果加起来，结果正好等于22</li>
+</ol>
+
+<p>在二进制中同理，5的二进制是101，17的二进制是10001</p>
+
+<ol>
+<li>各位相加但不进位，得到的结果是10100</li>
+<li>记下进位，此例中只有最后一位相加时产生一个进位，结果是二进制的10</li>
+<li>把前两部的结果相加，结果是10110，正好是22</li>
+</ol>
+
+<p>把二进制上的加法用位运算来替代</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+  <span style="color:#66d9ef">if</span>(b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">return</span> a;
+  }
+  <span style="color:#66d9ef">int</span> num1 <span style="color:#f92672">=</span> a <span style="color:#f92672">^</span> b;
+  <span style="color:#66d9ef">int</span> num2 <span style="color:#f92672">=</span> (a <span style="color:#f92672">&amp;</span> b)<span style="color:#f92672">&amp;</span>(<span style="color:#ae81ff">0x7FFFFFFF</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">return</span> getSum(num1, num2);
+}
+</code></pre></div>
+<p>注意：0x7FFFFFFF的作用是为了解决当a = -1, b = 1时，left shift操作错误(对于-2147483648)</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/leetcode"><span class="tag">Leetcode</span></a></li>
+        
+          <li><a href="http://blog.zhaoziwen.com.cn/tags/tagb"><span class="tag">TagB</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+      <div id="cyReward" role="cylabs" data-use="reward"></div>
+      <script src="//changyan.itc.cn/js/lib/jquery.js"></script>
+      <script src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cyu7pyzqM"></script>
+      <div id="SOHUCS" sid="/post/sum_of_two_integers/" ></div>
+      <script>
+      (function(){
+      var appid = 'cyu7pyzqM';
+      var conf = 'prod_c1839fffb132c8f1be9fb99b4e1a3e00';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 z2w_mose</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+    <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">粤ICP备16110253号</a></p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="http://blog.zhaoziwen.com.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
