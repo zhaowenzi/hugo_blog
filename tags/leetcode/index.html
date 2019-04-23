@@ -192,6 +192,36 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/permutations/" class="post-link">Permutations I &amp; II</a></h3>
+    <p class="post-meta">@z2w · Apr 24, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 46. Permutations
+Given a collection of distince integers, return all possible permutations
+Example:
+Input: [1, 2, 3]
+Output:
+[ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]
+[LeetCode] 47. Permutations II
+Given a collection of numbers that might contain duplicates, return all possible unique permutations
+Example:
+Input: [1, 1, 2]
+Output:
+[
+[1,1,2],
+[1,2,1],
+[2,1,1]
+]
+ 此题使用深度优先搜索DFS来求解，从左到右依次向out加入之前没有加入的元素，直到level等于num的数目大小，将out加入结果。其中，用visited数组来表示该元素是否被使用过。
+classSolution { public: vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; num) { vector&lt;vector&lt;int&gt;&gt; res; vector&lt;int&gt; out, visited(num.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/permutations/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/sum_of_two_integers/" class="post-link">Sum of Two Integers</a></h3>
     <p class="post-meta">@z2w · Apr 23, 2019 · 1 min read</p>
   </header>
@@ -359,29 +389,6 @@ The largest rectangle is shown in the shaded area, which has area = 10 unit.
 Example:</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/lrih_and_mr/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/" class="post-link">Unique Binary Search Trees</a></h3>
-    <p class="post-meta">@z2w · Mar 20, 2019 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 96. Given n, how many structurally unique BST’s that store values 1 … n ?
-Example:
-Input: 3
-Output: 5
-Explanation:
-Given n = 3, there are a total of 5 unique BST’s:
- 思路一递归：
-空树和只有根结点时，也为BST。对于一点i，当其为根结点时，左子树的节点的个数为i-1（1, … , i-1），右子树的个数为n-i（i&#43;1, … , n）。对于一个根来说，唯一二叉树的个数为左子树节点的个数乘以右子树的个数。
-classSolution { public: int numTrees(int n) { if(n&lt;=1) return 1; int sum=0; for(int i=1;i&lt;=n;&#43;&#43;i) sum&#43;=numTrees(i-1)*numTrees(n-i); return sum; } };  思路二动态规划：
-卡特兰数的递推公式：
-$$C_{0} = 1 \ and \ C_{n&#43;1} = \sum_{i=0}^{n}C_{i}C_{n-i} \ for \ n\geq 0.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/unique_binary_search_trees/">Read More →</a>
   </footer>
 </article>
 

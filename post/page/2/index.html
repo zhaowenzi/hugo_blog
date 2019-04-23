@@ -191,6 +191,22 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/trie_tree/" class="post-link">字典树(前缀树) Trie Tree(Prefix Tree)</a></h3>
+    <p class="post-meta">@z2w · Mar 28, 2019 · 2 min read</p>
+  </header>
+  
+  <p class="post-summary">字典树是一种数据结构，用于处理大量的字符串，是一种哈希树的变种。典型应用是用于统计、排序和保存大量的字符串，经常被搜索引擎系统用于文本词频统计。优点在于利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希表高。
+字典树有3个基本性质：
+ 根结点不包含字符，除根节点外每一个节点都只包含一个字符。 从根结点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串。 每个节点的所有子节点包含的字符都不相同。  实现如下： 首先定义TrieNode
+class TrieNode { char content; // the character in the node  boolean isEnd; // whether the end of the words  int count; //the number of words sharing this character  LinkedList&lt;TrieNode&gt; childList; // the child list  public TrieNode(char c) { childList = new LinkedList&lt;TrieNode&gt;(); isEnd = false; content = c; count = 0; } public TrieNode subNode(char c) { if(childList !</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/trie_tree/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/maximal_square/" class="post-link">Maximal Square</a></h3>
     <p class="post-meta">@z2w · Mar 27, 2019 · 1 min read</p>
   </header>
@@ -374,32 +390,6 @@ dp[i]表示以当前位置为终点的最长长度，则只能在“)”处更�
 classSolution { public: int longestValidParentheses(string s) { int result = 0; s = &#39;)&#39; &#43; s; vector&lt;int&gt; dp(s.length(),0); for(int i = 1; i &lt; s.length(); i&#43;&#43;) { if(s[i] == &#39;)&#39;) { if(s[i - 1 - dp[i - 1]] == &#39;(&#39;) dp[i] = dp[i-1] &#43; 2; dp[i] &#43;= dp[i-dp[i]]; } result = max(result,dp[i]); } return result; } };  思路二：栈</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/" class="post-link">递归之生成括号</a></h3>
-    <p class="post-meta">@z2w · Mar 12, 2019 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 22. Generate Parentheses
-Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-For example, given n = 3, a solution set is:
-[
-​ “((()))”
-​ “(()())”
-​ “()(())”
-​ “()()()”
-]
- 和合法的情况下，任意时刻，左括号个数要大于等于右括号个数
-1、当left个数大于right个数，非常情况，返回即可
-2、left和right都等于0，临时变量中左右括号个数相等，所以将临时变量的值存入res中
-3、其余情况下，先放左括号，再放右括号，然后递归。
-classSolution { public: vector&lt;string&gt; generateParenthesis(int n) { vector&lt;string&gt; res; generateParenthesisDFS(n, n, &#34;&#34;, res); return res; } void generateParenthesisDFS(int left, int right, string out, vector&lt;string&gt; &amp;res) { if(left &gt; right) return; if(left == 0 &amp;&amp; right == 0) res.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/">Read More →</a>
   </footer>
 </article>
 

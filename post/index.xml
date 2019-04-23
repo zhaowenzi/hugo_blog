@@ -7,10 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 23 Apr 2019 23:30:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 00:35:32 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.zhaoziwen.com.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Permutations I &amp; II</title>
+      <link>http://blog.zhaoziwen.com.cn/post/permutations/</link>
+      <pubDate>Wed, 24 Apr 2019 00:35:32 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/permutations/</guid>
+      <description>[LeetCode] 46. Permutations
+Given a collection of distince integers, return all possible permutations
+Example:
+Input: [1, 2, 3]
+Output:
+[ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]
+[LeetCode] 47. Permutations II
+Given a collection of numbers that might contain duplicates, return all possible unique permutations
+Example:
+Input: [1, 1, 2]
+Output:
+[
+[1,1,2],
+[1,2,1],
+[2,1,1]
+]
+ 此题使用深度优先搜索DFS来求解，从左到右依次向out加入之前没有加入的元素，直到level等于num的数目大小，将out加入结果。其中，用visited数组来表示该元素是否被使用过。
+classSolution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; permute(vector&amp;lt;int&amp;gt;&amp;amp; num) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; vector&amp;lt;int&amp;gt; out, visited(num.</description>
+    </item>
     
     <item>
       <title>Sum of Two Integers</title>
