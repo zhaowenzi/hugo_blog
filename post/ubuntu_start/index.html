@@ -60,7 +60,7 @@ sudo vim /etc/apt/sources.list 3、将原来的列表删除，添加如下内容
 
 
 
-<meta name="generator" content="Hugo 0.54.0">
+<meta name="generator" content="Hugo 0.52">
 
 
 <link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/ubuntu_start/">
@@ -549,7 +549,11 @@ cd /usr/local/cuda/lib64/
 sudo rm -rf libcudnn.so libcudnn.so.7   <span style="color:#75715e">#删除原有动态文件，版本号注意变化，可在cudnn的lib64文件夹中查看</span>   
 sudo ln -s libcudnn.so.7.0.2 libcudnn.so.7  <span style="color:#75715e">#生成软衔接（注意这里要和自己下载的cudnn版本对应，可以在/usr/local/cuda/lib64下查看自己libcudnn的版本）</span>
 sudo ln -s libcudnn.so.7 libcudnn.so <span style="color:#75715e">#生成软链接</span>
-sudo ldconfig -v <span style="color:#75715e">#立刻生效</span></code></pre></div></article>
+sudo ldconfig -v <span style="color:#75715e">#立刻生效</span></code></pre></div>
+<h4 id="九-相关资源">九、相关资源</h4>
+
+<p><a href="https://www.jianshu.com/p/893d622d1b5a">搭建深度学习平台</a></p>
+</article>
     <footer class="post-footer">
       
       <ul class="post-tags">
