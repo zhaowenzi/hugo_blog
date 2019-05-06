@@ -43,7 +43,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.52">
+<meta name="generator" content="Hugo 0.54.0">
 
 
 <link rel="canonical" href="http://blog.zhaoziwen.com.cn/">
@@ -185,6 +185,26 @@
   
   
    <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/" class="post-link">Longest_valid_parentheses</a></h3>
+    <p class="post-meta">@z2w · Mar 13, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">[LeetCode] 32. Longest Valid Parentheses
+Given a string containing just the characters ‘(’ and ‘)’, find the length of the longest valid parentheses substring.
+Example:
+Input: “)()()”
+Output: 4
+ 思路一：动态规划
+dp[i]表示以当前位置为终点的最长长度，则只能在“)”处更新：
+如果s[i-1-dp[i-1]]==‘(‘，则说明当前位置可以和i-1-dp[i-1]位置匹配，dp[i] = dp[i-1]&#43;2；
+然后还要加上匹配位置之前的最长长度dp[i]&#43;=dp[i-dp[i]]；
+classSolution { public: int longestValidParentheses(string s) { int result = 0; s = &#39;)&#39; &#43; s; vector&lt;int&gt; dp(s.length(),0); for(int i = 1; i &lt; s.length(); i&#43;&#43;) { if(s[i] == &#39;)&#39;) { if(s[i - 1 - dp[i - 1]] == &#39;(&#39;) dp[i] = dp[i-1] &#43; 2; dp[i] &#43;= dp[i-dp[i]]; } result = max(result,dp[i]); } return result; } };  思路二：栈</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/longest_valid_parentheses/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
   <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/generate_parentheses/" class="post-link">递归之生成括号</a></h3>
     <p class="post-meta">@z2w · Mar 12, 2019 · 1 min read</p>

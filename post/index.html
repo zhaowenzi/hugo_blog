@@ -46,7 +46,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.52">
+<meta name="generator" content="Hugo 0.54.0">
 
 
 <link rel="canonical" href="http://blog.zhaoziwen.com.cn/post/">
@@ -188,6 +188,30 @@
     </header>
     
     
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/newdisk/" class="post-link">Ubuntu环境挂载新硬盘</a></h3>
+    <p class="post-meta">@z2w · May 6, 2019 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary"> 1、显示硬盘及所属分区情况。 sudo fdisk -l 2、对硬盘进行分区。 sudo fdisk /dev/sdc 在Command (m for help) 提示符后面输入n，执行 add a new partition 指令给硬盘增加一个新分区
+接着在选择 Partition type 时键入 e，指定分区为扩展分区（extended）
+出现 Partition number(1-4)时，输入1表示只分一个区
+后续按默认值继续
+在重新出现 Command (m for help) 提示符后输入p，显示分区表
+无误后键入w，保存分区表
+重新进行步骤一，正确操作显示如下：
+3、硬盘格式化 sudo mkfs -t ext4 /dev/sdc # -t ext4 表示将分区格式化成ext4文件系统类型  4、挂载硬盘分区 显示硬盘挂载情况
+df -l 挂载
+sudo mount -t ext4 /dev/sdc /devdata 重新查看挂载情况，如图
+4、配置硬盘在系统启动自动挂载 在文件/etc/fstab中加入如下配置
+/dev/sdc	/devdata	ext4	defaults	0 0</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/newdisk/">Read More →</a>
+  </footer>
+</article>
+
       
         <article class="post-entry">
   <header class="post-header">
@@ -371,21 +395,6 @@ TCP报文段的首部格式 TCP报文段首部的前20个字节是固定的(如�
  保留。保留为今后使用，目前应置为0。后跟6个控制位。</p>
   <footer class="post-footer">
     <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/tcp/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/" class="post-link">Best Time to Buy and Sell Stock with Cooldown</a></h3>
-    <p class="post-meta">@z2w · Apr 1, 2019 · 1 min read</p>
-  </header>
-  
-  <p class="post-summary">[LeetCode] 309. Say you have an array for which the $i^{th}$element is the price of a given stock on day $i$.
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions:
- You may not engage in multiple transactions at the same time(ie, you must sell the stock before you buy again).</p>
-  <footer class="post-footer">
-    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/best_time_to_buy_and_sell_stock_with_cooldown/">Read More →</a>
   </footer>
 </article>
 
