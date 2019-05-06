@@ -202,7 +202,7 @@
 在重新出现 Command (m for help) 提示符后输入p，显示分区表
 无误后键入w，保存分区表
 重新进行步骤一，正确操作显示如下：
-3、硬盘格式化 sudo mkfs -t ext4 /dev/sdc # -t ext4 表示将分区格式化成ext4文件系统类型  4、挂载硬盘分区 显示硬盘挂载情况
+3、硬盘格式化 sudo mkfs -t ext4 /dev/sdc # -t ext4 表示将分区格式化成ext4文件系统类型 4、挂载硬盘分区 显示硬盘挂载情况
 df -l 挂载
 sudo mount -t ext4 /dev/sdc /devdata 重新查看挂载情况，如图
 4、配置硬盘在系统启动自动挂载 在文件/etc/fstab中加入如下配置
