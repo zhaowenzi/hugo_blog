@@ -192,6 +192,23 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/heap/" class="post-link">堆及相关操作</a></h3>
+    <p class="post-meta">@z2w · May 26, 2019 · 2 min read</p>
+  </header>
+  
+  <p class="post-summary">列举一些堆及相关操作的代码
+相关数据结构
+struct TreeNode { int Weight = 0; TreeNode *Left = nullptr; TreeNode *Right = nullptr; } struct HeapNode { TreeNode Data[MaxNum]; int size = 0; }  创建一个小根堆
+HeapNode *CreateHeap(int N) { HeapNode *H = new(HeapNode); H-&gt;Data[0].Weight = -1; //第一个作为哨兵，从1开始计数  return H; }  从堆中删除一个结点
+TreeNode *DeleteMin(HeapNode *H) { int Parent = 0, Child = 0; TreeNode temp; TreeNode *MinItem = new(TreeNode); *MinItem = H-&gt;Data[1]; temp = (H-&gt;Data[(H-&gt;Size)--]); for(Parent = 1; Parent * 2 &lt;= H-&gt;Size; Parent = Child) { Child = Parent * 2; if((Child !</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://blog.zhaoziwen.com.cn/post/heap/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="http://blog.zhaoziwen.com.cn/post/trie_tree/" class="post-link">字典树(前缀树) Trie Tree(Prefix Tree)</a></h3>
     <p class="post-meta">@z2w · Mar 28, 2019 · 2 min read</p>
   </header>

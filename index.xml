@@ -24,6 +24,19 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>堆及相关操作</title>
+      <link>http://blog.zhaoziwen.com.cn/post/heap/</link>
+      <pubDate>Sun, 26 May 2019 22:23:57 +0800</pubDate>
+      
+      <guid>http://blog.zhaoziwen.com.cn/post/heap/</guid>
+      <description>列举一些堆及相关操作的代码
+相关数据结构
+struct TreeNode { int Weight = 0; TreeNode *Left = nullptr; TreeNode *Right = nullptr; } struct HeapNode { TreeNode Data[MaxNum]; int size = 0; }  创建一个小根堆
+HeapNode *CreateHeap(int N) { HeapNode *H = new(HeapNode); H-&amp;gt;Data[0].Weight = -1; //第一个作为哨兵，从1开始计数  return H; }  从堆中删除一个结点
+TreeNode *DeleteMin(HeapNode *H) { int Parent = 0, Child = 0; TreeNode temp; TreeNode *MinItem = new(TreeNode); *MinItem = H-&amp;gt;Data[1]; temp = (H-&amp;gt;Data[(H-&amp;gt;Size)--]); for(Parent = 1; Parent * 2 &amp;lt;= H-&amp;gt;Size; Parent = Child) { Child = Parent * 2; if((Child !</description>
+    </item>
+    
+    <item>
       <title>Ubuntu环境挂载新硬盘</title>
       <link>http://blog.zhaoziwen.com.cn/post/newdisk/</link>
       <pubDate>Mon, 06 May 2019 12:37:21 +0800</pubDate>
